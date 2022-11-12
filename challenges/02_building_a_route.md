@@ -21,15 +21,15 @@ To decide on what code to execute depending on the request, internally Flask kee
 | POST        | /    | `# some different code to execute` |
 
 <details>
-    <summary>:confused: Are these like methods in Python classes?</summary>
+  <summary>:speech_bubble: Are these like methods in Python classes?</summary>
 
-    ---
+  ---
 
-    No. These are a different kind of method — a HTTP method.
+  No. These are a different kind of method — a HTTP method.
 
-    Each HTTP request comes with a label called a method which tells the server what kind of request it is. Common methods are GET (usually used to retrieve data) and POST (usually used to send data).
+  Each HTTP request comes with a label called a method which tells the server what kind of request it is. Common methods are GET (usually used to retrieve data) and POST (usually used to send data).
 
-    ---
+  ---
 
 </details>
 
