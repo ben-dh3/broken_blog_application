@@ -57,7 +57,7 @@ def test_post_submit(client):
 ```
 
 <details>
-    <summary>:speech_bubble: What is this `.decode('utf-8')` thing?</summary>
+    <summary>:speech_balloon: What is this `.decode('utf-8')` thing?</summary>
 
     ---
 

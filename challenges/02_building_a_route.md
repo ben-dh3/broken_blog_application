@@ -21,7 +21,7 @@ To decide on what code to execute depending on the request, internally Flask kee
 | POST        | /    | `# some different code to execute` |
 
 <details>
-  <summary>:speech_bubble: Are these like methods in Python classes?</summary>
+  <summary>:speech_balloon: Are these like methods in Python classes?</summary>
 
   ---
 
