@@ -1,0 +1,10 @@
+---
+checks:
+  -
+    pattern: "/flask run/"
+    reason: "Learners should use `flask --debug run` to enable autoreloading"
+    severity: warn
+  -
+    pattern: "/^\\$ /"
+    reason: "Use `;` to start shell lines, because they can be copy-pasted into zsh."
+    severity: warn
