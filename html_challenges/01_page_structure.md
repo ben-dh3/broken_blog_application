@@ -1,4 +1,4 @@
-# HTML Responses
+# Using HTML to create webpages
 
 _**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills. They contain a mixture of text and video, and may contain some challenge exercises without proposed solutions. [Read more about how to use Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
@@ -27,40 +27,37 @@ Every time we visit a URL, the web browser acts as a client — it sends a `GET`
 
 ## Returning HTML
 
-We don't want to put HTML code in the middle of our Sinatra application class. That's because we want to keep these two concerns separated - the program logic (in Ruby files) and the response content (the HTML code which will be sent to the browser).
+We don't want to put HTML code in the middle of our Flask application. That's because we want to keep these two concerns separated - the program logic (in Python files) and the response content (the HTML code which will be sent to the browser).
 
-To avoid putting HTML code in our app file, we write the HTML in a separate file, also called a _view file_.
+To avoid putting HTML code in our app file, we write the HTML in a separate file, also called a _template file_.
 
-This file is in a `views/` directory and has a `.erb` extension. We'll see later why.
+This file is in a `templates/` directory and has a `.html` extension.
 
 ```
-app.rb
+app.py
 lib/
   ...
-views/
-  index.erb
+templates/
+  index.html
 ```
 
-```ruby
-# file: app.rb
-require 'sinatra/base'
+```python
+# file: app.py
 
-class Application < Sinatra::Base 
-  configure :development do
-    register Sinatra::Reloader
-  end
+# NOTE: We must import `render_template` from Flask
+from flask import Flask, render_template
 
-  get '/' do
-    # The erb method takes the view file name (as a Ruby symbol)
-    # and reads its content so it can be sent 
-    # in the response.
-    return erb(:index)
-  end
-end
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    # The `render_template` function takes the template file name as a string,
+    # reads its content, and returns the response
+    return render_template('index.html')
 ```
 
 ```html
-<!-- file: views/index.erb -->
+<!-- file: templates/index.html -->
 
 <html>
   <head></head>
@@ -72,31 +69,44 @@ end
 
 ## Testing for HTML content
 
-We test HTML responses the same way we would for regular text responses - we can also use the `include` matcher to only assert a specific piece of HTML is present in the content.  
+We can test HTML responses in a similar way to testing plain text responses. However they can get quite long, so we can use the `in` operator to assert that the response contains a particular string.
 
-```ruby
-context "GET to /" do
-  it 'contains a h1 title' do
-    response = get('/')
+```python
 
-    expect(response.body).to include('<h1>Hello</h1>')
-  end
-  
-  it 'contains a div' do
-    response = get('/')
+import pytest
+from app import app
 
-    expect(response.body).to include('<div>')
-  end
-end
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True # This gets us better errors
+    with app.test_client() as client:
+        yield client
+
+
+"""
+Request: GET /
+Has a h1 title
+"""
+def test_index_contains_h1_title(client):
+    response = client.get('/')
+    assert "<h1>Hello</h1>" in response.data.decode('utf-8')
+
+"""
+Request: GET /
+Contains a div
+"""
+def test_index_contains_div(client):
+    response = client.get('/')
+    assert "<div>" in response.data.decode('utf-8')
 ```
 
 ## Demonstration
 
-[Video Demonstration](https://www.youtube.com/watch?v=R_8PnCQk1kw)
+[Video Demonstration](https://www.youtube.com/watch?v=Z8Y2J9Z8Z0o) <!-- OMITTED -->
 
 ## Exercise
 
-In the project `hello_web_project`.
+In your `hello_web_project` project.
 
 Test-drive and update the `GET /hello` route so it returns the greeting message as an HTML page:
 
@@ -109,10 +119,13 @@ Test-drive and update the `GET /hello` route so it returns the greeting message 
 </html>
 ```
 
-Then, make sure your server is running using `rackup` and use your web browser to access the page.
+Then, make sure your server is running using `flask --debug run` and use your web browser to access the page.
 
 
-[Next Challenge](02_using_erb_dynamic_page.md)
+
+
+
+[Next Challenge](02_using_templates_dynamic_page.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

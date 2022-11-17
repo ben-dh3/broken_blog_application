@@ -6,7 +6,7 @@ and a challenge without a solution video for you to test your learning. [Read mo
 how to use Makers
 Bites.](https://github.com/makersacademy/course/blob/main/labels/bites.md)_
 
-Learn to load static files using Sinatra.
+Learn to load static files using Flask.
 
 ## On HTML and CSS
 
@@ -27,6 +27,7 @@ p {
 }
 
 <!-- OMITTED -->
+
 a {
   color: green;
   font-size: 20px;
@@ -70,33 +71,33 @@ server, expecting to get some CSS content back.
 
 ### Do I need to implement a `GET /style.css` route, then?
 
-Sinatra makes things a bit easier for us — by default, any file present in the
-sub directory `public` of the project directory will be "served" by Sinatra as a "static"
+Flask makes things a bit easier for us — by default, any file present in the
+sub directory `static` of the project directory will be "served" by Flask as a "static"
 file.
 
 This means that, if a `GET` request references (with its _path_) a valid file present in
-the `public` directory, the contents of this file will be sent in the response.
+the `static` directory, the contents of this file will be sent in the response.
 
 For example, consider the following project structure:
 
 ```
-app.rb
+app.py
 lib/
-  album.rb
-  album_repository.rb
-public/
+  album.py
+  album_repository.py
+static/
   style.css
   album_cover.jpg
 spec/
 ```
 
 Sending a request `GET /style.css` will return the contents of the file `style.css`. Same
-for `GET /album_cover.jpg`. Sinatra is smart enough to realise the path we're requesting
-is a file from the `public` directory.
+for `GET /album_cover.jpg`. Flask is smart enough to realise the path we're requesting
+is a file from the `static` directory.
 
-This means that by putting our CSS file in `public/`, we can have it available at the URL
-`http://localhost:9292/style.css` (assuming our server is running on
-`http://localhost:9292`). So the following would then work out of the box:
+This means that by putting our CSS file in `static/`, we can have it available at the URL
+`http://localhost:5000/style.css` (assuming our server is running on
+`http://localhost:5000`). So the following would then work out of the box:
 
 ```html
 <link ref="stylesheet" href="/style.css" />
@@ -114,13 +115,14 @@ The HTML tag to add an image in a webpage is the following:
 ```
 
 When reading this tag, the browser will send the HTTP request `GET /album_cover.jpg`. If
-this file is present in the `public` directory of your project, your server will
+this file is present in the `static` directory of your project, your server will
 automatically send back its content, and the browser will display the image.
 
 _The `alt` attribute's description text is important for accessibility — it serves as cues
 for people with visual impairments, including people with low vision, to orient themselves
 in the content. [More information
 here](https://help.siteimprove.com/support/solutions/articles/80000863904-accessibility-image-alt-text-best-practices)_
+
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

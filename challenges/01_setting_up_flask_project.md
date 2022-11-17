@@ -1,6 +1,9 @@
 # Setting Up a Flask Project
 
-_**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills. They contain a mixture of text and video, and may contain some challenge exercises without proposed solutions. [Read more about how to use Makers
+_**This is a Makers Vine.** Vines are designed to gradually build up
+sophisticated skills. They contain a mixture of text and video, and may contain
+some challenge exercises without proposed solutions. [Read more about how to use
+Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
 
 Learn to setup a Python project with the Flask library.
@@ -9,9 +12,14 @@ Learn to setup a Python project with the Flask library.
 
 ## Flask
 
-[Flask](https://flask.palletsprojects.com/en/2.2.x/) is a small Python library we use to create web server programs using Python. We use Flask to configure which requests our program can respond to, and what logic needs to be done to respond to those requests.
+[Flask](https://flask.palletsprojects.com/en/2.2.x/) is a small Python library
+we use to create web server programs using Python. We use Flask to configure
+which requests our program can respond to, and what logic needs to be done to
+respond to those requests.
 
-In the following exercises and challenges, you will learn how to build a web server program that receives HTTP requests from a client (such as Postman), and returns HTTP responses to it.
+In the following exercises and challenges, you will learn how to build a web
+server program that receives HTTP requests from a client (such as Postman), and
+returns HTTP responses to it.
 
 ## Demonstration
 
@@ -19,14 +27,18 @@ In the following exercises and challenges, you will learn how to build a web ser
 
 ## Setting up
 
-[Follow this guidance](../pills/setting_up_flask_project.md) to setup a new project directory `hello_web_project` with Pytest and Flask.
+[Follow this guidance](../pills/setting_up_flask_project.md) to setup a new
+project directory `hello_web_project` with Pytest and Flask.
 
 We've got two different ways to interact with the program:
 
-* By running Pytest tests that will simulate HTTP requests and assert on responses.
-* By running the web server as a background program, using `flask --debug run`, so we can manually send requests to it.
+* By running Pytest tests that will simulate HTTP requests and assert on
+  responses.
+* By running the web server as a background program, using `flask --debug run`,
+  so we can manually send requests to it.
 
-Launch your server program with the `flask --debug run` command from your project directory:
+Launch your server program with the `flask --debug run` command from your
+project directory:
 
 ```shell
 ; flask --debug run
@@ -43,10 +55,11 @@ Press CTRL+C to quit
 We can now send HTTP requests using `curl`:
 
 ```shell
-; curl http://localhost:5000/test_route
+; curl http://localhost:5000/test-route
 ```
 
-`localhost` is the host name for your local machine, and `5000` is the network port on which Flask is running.
+`localhost` is the host name for your local machine, and `5000` is the network
+port on which Flask is running.
 
 <details>
   <summary>:speech_balloon: What is that `--debug` about?</summary>
@@ -55,9 +68,11 @@ We can now send HTTP requests using `curl`:
 
   The `--debug` flag tells Flask to run in a special debug mode.
 
-  The main difference for our purposes is that Flask will automatically reload your code when you change it.
+  The main difference for our purposes is that Flask will automatically reload
+  your code when you change it.
   
-  If you notice you are making changes to your code, but they are not being reflected in the server, check you are running with `flask --debug run`.
+  If you notice you are making changes to your code, but they are not being
+  reflected in the server, check you are running with `flask --debug run`.
 
   ---
 
@@ -65,11 +80,20 @@ We can now send HTTP requests using `curl`:
 
 ## Working Locally
 
-Something to be mindful of: in real-word programs, the web server program will usually be running on a remote machine, and you will access it through the Internet (like you did in the previous exercises, with `curl` and Postman).
+Something to be mindful of: in real-word programs, the web server program will
+usually be running on a remote machine, and you will access it through the
+Internet (like you did in the previous exercises, with `curl` and Postman).
 
-In the following challenges, you will _build_ such web server programs, which means that while you're building it, it will run on your machine. This is called working "locally", on a "local server", or "local setup", as opposed to the program being deployed in production, to real users.
+In the following challenges, you will _build_ such web server programs, which
+means that while you're building it, it will run on your machine. This is called
+working "locally", on a "local server", or "local setup", as opposed to the
+program being deployed in production, to real users.
 
-It's therefore important not to forget this: **the web server programs you will build this week are meant, in the end, to be run on remote machines, and interacted with through HTTP requests and responses**. Later on in the course, you will learn how to deploy your web server on a remote machine, which is closer to how things work in the "real world".
+It's therefore important not to forget this: **the web server programs you will
+build this week are meant, in the end, to be run on remote machines, and
+interacted with through HTTP requests and responses**. Later on in the course,
+you will learn how to deploy your web server on a remote machine, which is
+closer to how things work in the "real world".
 
 
 [Next Challenge](02_building_a_route.md)

@@ -1,4 +1,4 @@
-# Test-driving CRUD routes
+# Test-driving routes that interact with a database
 
 _**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills. They contain a mixture of text and video, and may contain some challenge exercises without proposed solutions. [Read more about how to use Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
@@ -116,7 +116,7 @@ pipenv shell
 pytest
 
 # Run the web server
-flask run
+flask --debug run
 ```
 
 ## Demonstration
@@ -125,7 +125,7 @@ flask run
 
 ## Exercise
 
-Follow the [Design recipe](../resources/flask_route_design_recipe_template.md) to test-drive a route `POST /albums` to create a new album:
+Follow the [Design recipe](../resources/plain_route_recipe_template.md) to test-drive a route `POST /albums` to create a new album:
 
 ```
 # Request:

@@ -73,7 +73,7 @@ _In the following exercises, we will use the shorthand notation `GET /some_path`
 
 ## Design Recipe
 
-We'll use [this Design recipe](../resources/flask_route_design_recipe_template.md) to support the process of design and test-driving of routes.
+We'll use [this Design recipe](../resources/plain_route_recipe_template.md) to support the process of design and test-driving of routes.
 
 ## Demonstration
 

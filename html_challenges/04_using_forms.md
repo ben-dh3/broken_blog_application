@@ -15,30 +15,30 @@ A form is usually implemented over two routes:
 
 Here's an example:
 
-```ruby
-get '/posts/new' do
-  # This route doesn't do much,
-  # it returns the view with the HTML form.
-  return erb(:new_post)
-end
+```python
+@app.route('/posts/new', methods=['GET'])
+def new_post():
+    # This route doesn't do much,
+    # it returns the view with the HTML form.
+    return render_template('new_post.html')
 
-post '/posts' do
-  # Get request body parameters
-  title = params[:title]
-  content = params[:content]
+@app.route('/posts', methods=['POST'])
+def create_post():
+    # Get request body parameters
+    title = request.form['title']
+    content = request.form['content']
 
-  # Do something useful, like creating a post
-  # in a database.
-  new_post = Post.new
-  new_post.title = title
-  new_post.content = content
-  PostRepository.new.create(new_post)
+    # Do something useful, like creating a post
+    # in a database.
+    new_post = Post()
+    new_post.title = title
+    new_post.content = content
+    PostRepository().create(new_post)
 
-  # Return a view to confirm
-  # the form submission or resource creation
-  # to the user.
-  return erb(:post_created)
-end
+    # Return a view to confirm
+    # the form submission or resource creation
+    # to the user.
+    return render_template('post_created.html')
 ```
 
 ## HTML forms
@@ -58,92 +58,95 @@ When the user submits this form, the browser sends a `POST` request to the path 
 
 ## Validation
 
-Note that the values of the `name` attributes in the HTML form must match the parameters' names the Sinatra route expects — this is also called having a "contract" between the client (the web browser sending the form data) and the server (our Sinatra application, which is expecting some specific parameters).
+Note that the values of the `name` attributes in the HTML form must match the parameters' names the Flask route expects — this is also called having a "contract" between the client (the web browser sending the form data) and the server (our Flask application, which is expecting some specific parameters).
 
 A way of enforcing this contract, and avoiding the client to send wrong values, is to add some validation to the `POST` route — here's an example:
 
-```ruby
-# app.rb
+```python
+# app.py
 
-post '/posts' do
-  if invalid_request_parameters?
-    # Set the response code
-    # to 400 (Bad Request) - indicating
-    # to the client it sent incorrect data
-    # in the request.
-    status 400
+    @app.route('/posts', methods=['POST'])
+    def create_post():
+        if invalid_request_parameters():
+            # Set the response code
+            # to 400 (Bad Request) - indicating
+            # to the client it sent incorrect data
+            # in the request.
+            return '', 400
 
-    return ''
-  end
+        # Parameters are valid,
+        # the rest of the route can execute.
 
-  # Parameters are valid,
-  # the rest of the route can execute.
-end
-
-def invalid_request_parameters?
-  params[:title] == nil || params[:content] == nil
-end
+    def invalid_request_parameters():
+        return request.form['title'] == None or request.form['content'] == None
 ```
-
 ## Test-driving a form
 
 Since there are two routes, we need to test-drive these two routes. It's fine to test-drive them one by one.
 
-```ruby
-context "GET /posts/new" do
-  it 'returns the form page' do
-    response = get('/posts/new')
+```python
+"""
+GET /posts/new
+Returns the form page
+"""
+def test_get_posts_new(client):
+    response = client.get('/posts/new')
 
-    expect(response.status).to eq(200)
-    expect(response.body).to include('<h1>Add a post</h1>')
+    assert response.status_code == 200
+    assert '<h1>Add a post</h1>' in response.data.decode()
 
     # Assert we have the correct form tag with the action and method.
-    expect(response.body).to include('<form action="/posts" method="POST">')
+    assert '<form action="/posts" method="POST">' in response.data.decode()
 
     # We can assert more things, like having
     # the right HTML form inputs, etc.
-  end
-end
 
-context "POST /posts" do
-  it 'returns a success page' do
+"""
+POST /posts
+Returns a success page
+"""
+def test_post_posts(client):
     # We're now sending a POST request,
     # simulating the behaviour that the HTML form would have.
-    response = post(
-      '/posts',
-      title: 'Welcome',
-      content: 'I am a post'
+    response = client.post(
+        '/posts',
+        data={
+            'title': 'Welcome',
+            'content': 'I am a post
+        }
     )
 
-    expect(response.status).to eq(200)
-    expect(response.body).to include('<p>Your post has been added!</p>')
-  end
+    assert response.status_code == 200
+    assert '<p>Your post has been added!</p>' in response.data.decode()
 
-  it 'responds with 400 status if parameters are invalid' do
+"""
+POST /posts
+Responds with 400 status if parameters are invalid
+"""
+def test_post_posts_invalid_parameters(client):
     # ...
-  end
-end
+    pass
 ```
 
 ## On Route Priority
 
-Remember that Sinatra uses the first route that matches a request. When creating a route such as `/albums/new`, a common problem you could run into would be to have another route `/albums/:id`, containing a dynamic path parameter, being used - as the parameter `:id` will "capture" the value `"new"` in the URL.
+Remember that Flask uses the first route that matches a request. When creating a route such as `/albums/new`, a common problem you could run into would be to have another route `/albums/<id>`, containing a dynamic path parameter, being used - as the parameter `<id>` will "capture" the value `"new"` in the URL.
 
-```ruby
+```python
 # For a request with path `/albums/new`
 
 # This route will be used - which is probably not what we want.
-get '/albums/:id' do
-
-end
+@app.route('/albums/<id>')
+def get_album(id):
+    pass
 
 # And this one is skipped
-get '/albums/new' do 
-
-end
+@app.route('/albums/new')
+def get_new_album():
+    pass
 ```
 
-An easy way to fix this is to define the routes in the reverse order - this way `/albums/new` will be used first, and then any request to a path such as `/albums/12` will get to the other route. Another way, a bit more complex, is [to configure the route parameter to match a certain format](http://sinatrarb.com/intro.html#:~:text=Route%20matching%20with%20Regular%20Expressions%3A), such as a numeric value.
+An easy way to fix this is to define the routes in the reverse order - this way `/albums/new` will be used first, and then any request to a path such as `/albums/12` will get to the other route. Another way, a bit more complex, is [to configure the route parameter to match a certain format](https://flask.palletsprojects.com/en/2.0.x/quickstart/#variable-rules), such as a numeric value.
 
 ## Demonstration
 
@@ -155,7 +158,7 @@ In the project `music_library_database_app`.
 
 Test-drive and implement a form page to add a new album.
 
-You should then be able to use the form in your web browser to add a new album, and see this new album in the albums list page. 
+You should then be able to use the form in your web browser to add a new album, and see this new album in the albums list page.
 
 [Example solution](https://www.youtube.com/watch?v=A6xZFvUGJXs&t=1220s)
 
@@ -165,7 +168,8 @@ In the project `music_library_database_app`.
 
 Test-drive and implement a form page to add a new artist.
 
-You should then be able to use the form in your web browser to add a new artist, and see this new artist in the artists list page. 
+You should then be able to use the form in your web browser to add a new artist, and see this new artist in the artists list page.
+
 
 [Next Challenge](05_debugging.md)
 

@@ -7,8 +7,6 @@ Learn to build a route to respond to HTTP requests.
 
 <!-- OMITTED -->
 
-# Building a Route
-
 ## Routing
 
 Remember that a web server receives HTTP requests, execute some code depending on the received request, and returns a response.

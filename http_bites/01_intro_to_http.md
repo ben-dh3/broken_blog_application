@@ -14,61 +14,91 @@ Learn to explain the basics of how the HTTP protocol works.
 
 ## Clients and Servers
 
-So far you've been building programs than run on a single machine — yours. However to deploy applications to users, we need a way for them to access and interact with the program. 
+So far you've been building programs than run on a single machine — yours.
+However to deploy applications to users, we need a way for them to access and
+interact with the program.
 
-They could download and run the program themselves. But a better way is to run the program on a machine, and allow users to access it through their Internet connection. This is the basics of how the Web works.
+They could download and run the program themselves. But a better way is to run
+the program on a machine, and allow users to access it through their Internet
+connection. This is the basics of how the Web works.
 
-The "central" machine where the program runs (alongside usually a database software) is called the **server**. The machine and software used by users to interact with the program is called the **client**.
+The "central" machine where the program runs (alongside usually a database
+software) is called the **server**. The machine and software used by users to
+interact with the program is called the **client**.
 
-In the most simple situations, there is one **server** but many different **clients** can connect to it.
+In the most simple situations, there is one **server** but many different
+**clients** can connect to it.
 
 ![](../resources/client-server.png)
 
-Something to be aware of: the term "client" can reference slightly different things depending on the context — it can be the machine itself, or the software program used (usually a web browser, such as Firefox or Chrome). The term "server" can also be ambiguous and refer to either the machine or the software program running the program and responding to clients.
+Something to be aware of: the term "client" can reference slightly different
+things depending on the context — it can be the machine itself, or the software
+program used (usually a web browser, such as Firefox or Chrome). The term
+"server" can also be ambiguous and refer to either the machine or the software
+program running the program and responding to clients.
 
-In this module, "web server" will usually refer to a (Ruby) program that receives requests and sends back responses, and "client" will refer to either Postman or a web browser.
+In this module, "web server" will usually refer to a (Python) program that
+receives requests and sends back responses, and "client" will refer to either
+Postman or a web browser.
 
 ## HTTP
 
-Web clients and servers need to communicate through the network. They use a special language called the **HTTP protocol**.
+Web clients and servers need to communicate through the network. They use a
+special language called the **HTTP protocol**.
 
-As web application developers, you'll almost never have to write any HTTP directly, but it's still important to understand the basics of how it works to effectively build and debug web applications. You'll learn more about HTTP in the following sections.
+As web application developers, you'll almost never have to write any HTTP
+directly, but it's still important to understand the basics of how it works to
+effectively build and debug web applications. You'll learn more about HTTP in
+the following sections.
 
-At a high-level, when a client needs to interact with the program, it sends a **request** to the server through the Internet. When the server program receives this request, it does some work, perhaps communicate with a database behind the scenes, and then sends back a **response** to the client.
+At a high-level, when a client needs to interact with the program, it sends a
+**request** to the server through the Internet. When the server program receives
+this request, it does some work, perhaps communicate with a database behind the
+scenes, and then sends back a **response** to the client.
 
-This process is repeated as many times needed, depending on what the application does. Here is an example of a typical HTTP request-response flow for a news website:
+This process is repeated as many times needed, depending on what the application
+does. Here is an example of a typical HTTP request-response flow for a news
+website:
 
 1. The client (a web browser) sends a request to _get all latest articles_.
-2. The server (a program, written in Ruby or something else) receives the request.
-3. The server retrieves the articles from the database and sends back a response containing the articles' data.
-4. The client receives the response and displays the list of articles.  
-(_end of the first request-response cycle_)
+2. The server (a program, written in Python or something else) receives the
+   request.
+3. The server retrieves the articles from the database and sends back a response
+   containing the articles' data.
+4. The client receives the response and displays the list of articles. (_end of
+the first request-response cycle_)
 5. The client sends a request to _get a specific article_.
 6. The server receives the request.
-7. The server retrieves this specific article from the database and sends back a response containing that article's data.
-9. The client receives the response and displays that article's content.  
-(_end of the second request-response cycle_)
+7. The server retrieves this specific article from the database and sends back a
+   response containing that article's data.
+8. The client receives the response and displays that article's content.
 
-You can notice that there are some similarities with the type of operations you implemented when working with databases — the client can request _all_ articles, _one_ specific article... and we could probably imagine other operations.
+You can notice that there are some similarities with the type of operations you
+implemented when working with databases — the client can request _all_ articles,
+_one_ specific article... and we could probably imagine other operations.
 
 Most web applications you will work on and use will be CRUD applications.
 
 ## Using `curl` to send a request
 
-We can use a small command line utility called `curl` — you can install it on Mac with Homebrew:
-```bash
-brew install curl
+We can use a small command line utility called `curl` — you can install it on
+Mac with Homebrew:
+
+```shell
+; brew install curl
 ```
 
-The `curl` program is itself a HTTP client — it can send a request to a server and receive a response. The only required argument to the command is where to send the request — the URL.
+The `curl` program is itself a HTTP client — it can send a request to a server
+and receive a response. The only required argument to the command is where to
+send the request — the URL.
 
-```bash
-curl https://jsonplaceholder.typicode.com/todos/1
+```shell
+; curl https://jsonplaceholder.typicode.com/todos/1
 ```
 
 You should get the following output:
 
-```
+```json
 {
   "userId": 1,
   "id": 1,
@@ -76,6 +106,7 @@ You should get the following output:
   "completed": false
 }
 ```
+
 
 
 [Next Challenge](02_requests_and_responses.md)

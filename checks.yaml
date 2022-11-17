@@ -8,3 +8,22 @@ checks:
     pattern: "/^\\$ /"
     reason: "Use `;` to start shell lines, because they can be copy-pasted into zsh."
     severity: warn
+  -
+    pattern: "/ruby|sinatra|\\.rb/i"
+    reason: "This is a Python module, no need for Ruby or Sinatra"
+    severity: fail
+  - pattern: "/rspec(?!tive)/i" # This lookahead is to ignore the word 'perspective'
+    reason: "This is a Python module, no need for RSpec"
+    severity: fail
+  -
+    pattern: "/<%/"
+    reason: "This is an ERB tag. Instead use {{ Jinja Tags }}"
+    severity: fail
+  -
+    pattern: "/erb/i"
+    reason: No ERB here!
+    severity: fail
+  -
+    pattern: "/heroku/i"
+    reason: We're not using Heroku in this module
+    severity: fail
