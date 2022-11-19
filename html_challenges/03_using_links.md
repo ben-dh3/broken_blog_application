@@ -8,8 +8,10 @@ Learn to use HTML links to make the browser send `GET` requests.
 ## Intro
 
 Let's consider the following situation. We have two routes:
-  * `GET /` is the "root", returning HTML code — in other words, it is the website homepage.
-  * `GET /about` is another route, returning some different HTML — it's a different page.
+
+* `GET /` is the "root", returning HTML code — in other words, it is the website homepage.
+
+* `GET /about` is another route, returning some different HTML — it's a different page.
 
 The web browser can send requests to these two routes separately.
 
@@ -22,6 +24,11 @@ The `<a>` HTML tag is used to create links. The attribute `href` tells the brows
 ```html
 <a href="/about">Go to the about page</a>
 ```
+
+Here are some examples in the starter:
+
+* [A simple link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/show.html#L16-L18)
+* [A link with Jinja tags in it](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/index.html#L14)
 
 When the above link is clicked, the browser will send a new request `GET /about` to the server.
 
@@ -37,9 +44,9 @@ When creating links between "pages", keep the developer tools open in the browse
 
 ## Exercise
 
-Test-drive and implement the following change to the `music_library_database_app` project:
+Test-drive and implement the following change:
 
-The page returned by `GET /albums` should contain a link for each album listed. It should link to `/albums/:id`, where `:id` is the corresponding album's id.
+The page returned by `GET /albums` should contain a link for each album listed. It should link to `/albums/<id>`, where `<id>` is the corresponding album's id.
 
 Run the server and make sure you can navigate, using your browser, from the albums list page to the single album page.
 
@@ -52,8 +59,9 @@ submit that recording to your coach for feedback. [How do I do
 this?](https://github.com/makersacademy/golden-square-in-python/blob/main/pills/process_feedback_challenges.md)
 
 Test-drive and implement the following changes to the `music_library_database_app` project:
-1. Add a route `GET /artists/:id` which returns an HTML page showing details for a single artist.
-2. Add a route `GET /artists` which returns an HTML page with the list of artists. This page should contain a link for each artist listed, linking to `/artists/:id` where `:id` needs to be the corresponding artist id.
+
+1. Add a route `GET /artists/<id>` which returns an HTML page showing details for a single artist.
+2. Add a route `GET /artists` which returns an HTML page with the list of artists. This page should contain a link for each artist listed, linking to `/artists/<id>` where `<id>` needs to be the corresponding artist id.
 
 [After you're done, submit your recording here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=web_as03).
 

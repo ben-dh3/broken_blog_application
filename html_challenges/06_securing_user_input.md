@@ -1,35 +1,31 @@
 # Securing User Input
 
-_**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills.
-They contain a mixture of text and video, and may contain some challenge exercises without
-proposed solutions. [Read more about how to use Makers
-Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
-
 Learn to validate and handle user input from HTML forms.
 
 ## Intro
 
-You learned how to build forms so user can input data that will be sent to the web
-application, as part of the request — which means our web applications can now handle data
-filled in by users.
+You learned how to build forms so user can input data that will be sent to the
+web application, as part of the request — which means our web applications can
+now handle data filled in by users.
 
-This opens the door to many possibly exciting features, but also to some security risks
-for our application.
+This opens the door to many possibly exciting features, but also to some
+security risks for our application.
 
-You can read through [the OWASP list of top ten security risks.](https://owasp.org/www-project-top-ten/)
+You can read through [the OWASP list of top ten security
+risks.](https://owasp.org/www-project-top-ten/)
 
 ## Exploiting a breach
 
-Setup the [`unsecure_app`](../projects_to_debug/unsecure_app/) project:
+_You will need to have completed the debugging challenge on the postcode app to
+do this one._
 
-```shell
-; cd web-applications/projects_to_debug/unsecure_app
-; pipenv install
-; pipenv shell
-; flask --debug run
-```
+Head back to the [Postcode Checker
+App](../projects_to_debug/postcode_checker_app) and run it.
 
-Navigate to the homepage and copy the following text into the message text field, then submit the form:
+Navigate to the homepage and copy the text below into the postcode text field,
+then submit the form.
+
+_Headphone warning: this will play some music!_
 
 ```
 <script>window.alert("You've been p0wn3d!!!!"); document.location.href="https://www.youtube.com/watch?v=34Ig3X59_qA";</script>
@@ -39,17 +35,47 @@ OK, that was interesting.
 
 ### What happened?
 
-We've input some JavaScript code inside a `<script>` tag, and the next HTML page printed this whole bunch of code without any other check. The JavaScript code did execute (as if it were a normal part of the HTML page), and that code made the browser display an alert message, and redirect to a video.
+We've input some JavaScript code inside a `<script>` tag, and the next HTML page
+printed this whole bunch of code without any other check. The JavaScript code
+did execute (as if it were a normal part of the HTML page), and that code made
+the browser display an alert message, and redirect to a video.
 
-It's important to know that using this technique, someone clever and motivated enough could exploit a security breach, and get other users' browsers to execute some arbitrary JavaScript code. This could result in stolen credentials, deleted or corrupted data, or worse, depending on the website and the targeted users. This is called _cross-site scripting injection_, or XSS injection.
+It's important to know that using this technique, someone clever and motivated
+enough could exploit a security breach, and get other users' browsers to execute
+some arbitrary JavaScript code. This could result in stolen credentials, deleted
+or corrupted data, or worse, depending on the website and the targeted users.
+This is called _cross-site scripting injection_, or XSS injection.
 
-How do we prevent this? By following one simple rule - **never** trusting user input, and always consider it as "tainted". Before being fully processed (inserted a database, sent to some external service, or displayed to users), it needs to be validated, checked and sanitised.
+How do we prevent this? By following one simple rule - **never** trusting user
+input, and always consider it as "tainted". Before being fully processed
+(inserted a database, sent to some external service, or displayed to users), it
+needs to be validated, checked and sanitised.
 
 ## Exercise
 
-Modify the code of the previous exercise to make sure user input is sanitised, and the previous breach cannot be exploited - either by preventing a parameter containing special characters to be processed, or by "escaping" the HTML present in some text.
+Modify the code of the `postcode_checker_app` to make sure user input is
+correctly handled and the previous breach cannot be exploited. 
 
-You can do this either by validating the request parameters (in the route), or when displaying the content (in the view). The best is probably to do both.
+The most appropriate way to do this is to 'escape' the user input. This modifies
+the contents so that it cannot be interpreted as HTML. For example:
+
+```html
+<!-- Not escaped -->
+<script>window.alert("You've been p0wn3d!!!!");</script>
+
+<!-- Escaped -->
+&lt;script&gt;window.alert("You've been p0wn3d!!!!");&lt;/script&gt;
+```
+
+If you look at the Flask [security
+documentation](https://flask.palletsprojects.com/en/2.2.x/security/) you will
+see this paragraph:
+
+> Flask configures Jinja2 to automatically escape all values unless explicitly
+> told otherwise.
+
+However, in this case the application is not doing that. You may need to perform
+some research to determine why this is, and then correct the underlying problem.
 
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->

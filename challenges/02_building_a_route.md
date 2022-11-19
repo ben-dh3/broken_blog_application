@@ -1,6 +1,9 @@
 # Building a Route
 
-_**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills. They contain a mixture of text and video, and may contain some challenge exercises without proposed solutions. [Read more about how to use Makers
+_**This is a Makers Vine.** Vines are designed to gradually build up
+sophisticated skills. They contain a mixture of text and video, and may contain
+some challenge exercises without proposed solutions. [Read more about how to use
+Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
 
 Learn to build a route to respond to HTTP requests.
@@ -9,9 +12,12 @@ Learn to build a route to respond to HTTP requests.
 
 ## Routing
 
-Remember that a web server receives HTTP requests, execute some code depending on the received request, and returns a response.
+Remember that a web server receives HTTP requests, execute some code depending
+on the received request, and returns a response.
 
-To decide on what code to execute depending on the request, internally Flask keeps a "routing" table, which associates a given request **method and path** to a block of Python code:
+To decide on what code to execute depending on the request, internally Flask
+keeps a "routing" table, which associates a given request **method and path** to
+a block of Python code:
 
 | HTTP Method | Path | Python code                        |
 | ----------- | ---- | ---------------------------------- |
@@ -25,15 +31,19 @@ To decide on what code to execute depending on the request, internally Flask kee
 
   No. These are a different kind of method — a HTTP method.
 
-  Each HTTP request comes with a label called a method which tells the server what kind of request it is. Common methods are GET (usually used to retrieve data) and POST (usually used to send data).
+  Each HTTP request comes with a label called a method which tells the server
+  what kind of request it is. Common methods are GET (usually used to retrieve
+  data) and POST (usually used to send data).
 
   ---
 
 </details>
 
-Different requests will execute different code in our Flask application, and lead to different responses being sent back.
+Different requests will execute different code in our Flask application, and
+lead to different responses being sent back.
 
-Here is an example of a minimal Flask application, configuring a single **route**:
+Here is an example of a minimal Flask application, configuring a single
+**route**:
 
 ```python
 # file: app.py
@@ -52,9 +62,12 @@ def index():
     return 'Some response data'
 ```
 
-The Python function associated with a HTTP method and path is called a "route". The code in this block is executed _only_ is the received request matches the HTTP method and path.
+The Python function associated with a HTTP method and path is called a "route".
+The code in this block is executed _only_ is the received request matches the
+HTTP method and path.
 
-When Flask received a request, it looks through all the route blocks configured in that class, and execute the code of the first one matching the request.
+When Flask receives a request, it looks through all the route blocks configured
+in that class, and execute the code of the first one matching the request.
 
 ```python
 from flask import Flask
@@ -89,13 +102,17 @@ def other_get_index():
     return "It isn't me, the other route stole the show"
 ```
 
-_In the following sections, we will use the shorthand notation `GET /some_path` to designate a route which responds to `GET` requests to the path `/some_path`._
+_In the following sections, we will use the shorthand notation `GET /some_path`
+to designate a route which responds to `GET` requests to the path `/some_path`._
 
 ## Accessing GET request parameters
 
-We can use the `request.args` dictionary inside a route block to access the request _query parameters._
+We can use the `request.args` dictionary inside a route block to access the
+request _query parameters._
 
-If a client sends a request with a query parameter with key `name` and value `David`, this parameter will be present in the `request.args` dictionary, and we can access the value like this:
+If a client sends a request with a query parameter with key `name` and value
+`David`, this parameter will be present in the `request.args` dictionary, and we
+can access the value like this:
 
 ```python
 from flask import Flask, request # NOTE: we must import `request` too
@@ -112,8 +129,27 @@ def hello():
     # Send back a friendly greeting with the name
     return f"Hello {name}!"
 
-# You can open this with http://localhost:5000/hello?name=David
+# To make a request, run:
+# curl "http://localhost:5000/hello?name=David"
 ```
+
+<details>
+  <summary>:confused: I get `zsh: no matches found`</summary>
+
+  ---
+
+  For the terminal, `?` is a special character. If you see this error it is
+  probably because you haven't quoted the URL like this:
+
+  ```shell
+  ; curl "http://localhost:5000/hello?name=David"
+  ```
+
+  The quotes tell the terminal, "No, really, I mean a literal question mark!"
+
+  ---
+
+</details>
 
 ## Accessing POST request parameters
 
@@ -140,8 +176,8 @@ def goodbye():
 
 You won't be able to visit that last request using the browser's address bar.
 
-Try sending a POST request with the right data using Postman. You could also
-use the `curl` command line tool, like this:
+Try sending a POST request with the right data using Postman. You could also use
+the `curl` command line tool, like this:
 
 ```shell
 ; curl -X POST -d "name=Alice" http://localhost:5000/goodbye
@@ -154,7 +190,7 @@ Goodbye Alice!
 
 ## Exercise
 
-Work through the following in your `hello_web_project` project.
+Work through the following in `app.py` in your `hello_web_project` project.
 
 Create a new route that responds to requests sent with:
   * A method `POST`
@@ -174,19 +210,21 @@ message=Hello world
 Thanks Leo, you sent this message: "Hello world"
 ```
 
-Make sure your server is running — then, using Postman, check the route is working.
+Make sure your server is running — then, using `curl` or Postman, check the
+route is working.
 
 [Example Solution](https://www.youtube.com/watch?v=iCMsemJVbqo&t=1106s) <!-- OMITTED -->
 
 ## Challenge
 
-Work through the following in your `hello_web_project` project.
+Work through the following in `app.py` your `hello_web_project` project.
 
 Create a new route that responds to requests sent with:
   * A method `GET`
   * A path `/wave`
 
-It should return the text `'I am waving at [NAME]'`, where `[NAME]` is replaced by the value of the `name` _query parameter_.
+It should return the text `'I am waving at [NAME]'`, where `[NAME]` is replaced
+by the value of the `name` _query parameter_.
 
 ```
 # Request:
@@ -196,7 +234,8 @@ GET /wave?name=Leo
 I am waving at Leo
 ```
 
-Make sure your server is running — then, using Postman, check the route is working.
+Make sure your server is running — then, using `curl` or Postman, check the
+route is working.
 
 
 [Next Challenge](03_test_driving_a_route.md)

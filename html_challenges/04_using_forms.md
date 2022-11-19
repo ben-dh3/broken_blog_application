@@ -10,127 +10,93 @@ Use HTML forms to make the browser send `POST` requests.
 A form is used to send a `POST` request, usually with some additional data, as request parameters.
 
 A form is usually implemented over two routes:
-  * The first one, a `GET` route, only returns an HTML page with the form, so the user can fill in and submit it.
-  * The second one, a `POST` route, handles the body parameters sent by the browser, and returns a response (usually to indicate whether the form data has been successfully handled or saved).
 
-Here's an example:
+* The first one, a `GET` route, only returns an HTML page with the form, so the
+  user can fill in and submit it.
+  
+* The second one, a `POST` route, handles the body parameters sent by the
+  browser, and returns a response (usually to indicate whether the form data has
+  been successfully handled or saved).
 
-```python
-@app.route('/posts/new', methods=['GET'])
-def new_post():
-    # This route doesn't do much,
-    # it returns the view with the HTML form.
-    return render_template('new_post.html')
-
-@app.route('/posts', methods=['POST'])
-def create_post():
-    # Get request body parameters
-    title = request.form['title']
-    content = request.form['content']
-
-    # Do something useful, like creating a post
-    # in a database.
-    new_post = Post()
-    new_post.title = title
-    new_post.content = content
-    PostRepository().create(new_post)
-
-    # Return a view to confirm
-    # the form submission or resource creation
-    # to the user.
-    return render_template('post_created.html')
-```
+[You can see an example in the starter app.](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/example_routes.py#L28-L58)
 
 ## HTML forms
 
 Like links, we can use forms to make the browser send an HTTP request.
 
-```html
-<form action="/posts" method="POST">
-  <input type="text" name="title">
-  <input type="text" name="content">
+[You can see an example in the starter app](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/new.html)
 
-  <input type="submit" value="Submit the form">
-</form>
-```
-
-When the user submits this form, the browser sends a `POST` request to the path `/posts`. The `action` and `method` attributes are used to tell the browser which method and path to send the new request to. The content of each form input is sent as body parameters.
+When the user submits this form, the browser sends a `POST` request to the path
+`/books`. The `action` and `method` attributes are used to tell the browser
+which method and path to send the new request to. The content of each form input
+is sent as body parameters with the `name` HTML attribute being the name of the
+parameter.
 
 ## Validation
 
-Note that the values of the `name` attributes in the HTML form must match the parameters' names the Flask route expects — this is also called having a "contract" between the client (the web browser sending the form data) and the server (our Flask application, which is expecting some specific parameters).
+Note that the values of the `name` attributes in the HTML form must match the
+parameters' names the Flask route expects — this is also called having a
+"contract" between the client (the web browser sending the form data) and the
+server (our Flask application, which is expecting some specific parameters).
 
-A way of enforcing this contract, and avoiding the client to send wrong values, is to add some validation to the `POST` route — here's an example:
+A way of enforcing this contract, and avoiding the client to send wrong values,
+is to add some validation to the `POST` route.
 
-```python
-# app.py
+You can see an example of this in the starter app:
 
-    @app.route('/posts', methods=['POST'])
-    def create_post():
-        if invalid_request_parameters():
-            # Set the response code
-            # to 400 (Bad Request) - indicating
-            # to the client it sent incorrect data
-            # in the request.
-            return '', 400
+1. [The route checks whether the book is
+   valid](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/example_routes.py#L50-L52)
+2. [Using the `is_valid` method on
+   `Book`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/lib/book.py#L20-L25)
+3. If not, [it
+  renders](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/example_routes.py#LL52)
+  the new form again instead, passing in the result of
+  [`Book#generate_errors](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/lib/book.py#L27-L36)
+4. And the form [displays the errors at the top of the
+   form](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/new.html#L13-L18)
 
-        # Parameters are valid,
-        # the rest of the route can execute.
+<details>
+  <summary>:speech_bubble: What does `new.html` mean by 'These `label` tags are important for accessibility'?</summary>
 
-    def invalid_request_parameters():
-        return request.form['title'] == None or request.form['content'] == None
-```
+  ---
+
+  Accessibility is about making sure that everyone can use your website,
+  including people with disabilities.
+
+  The `label` tag is one important technique. It enables visually impaired
+  people to use applications that read out the screen called 'screen readers'.
+  With the `label` tag the screen reader can read out the label of the input
+  field when the user reaches it.
+
+  It is also helpful in another way: when you click the label the input field
+  will be focused. Try it out!
+
+  To learn more, read [this resource from the Harvard University digital
+  accessibility
+  resource](https://accessibility.huit.harvard.edu/technique-input-labels).
+
+  ---
+
+</details>
+
 ## Test-driving a form
 
-Since there are two routes, we need to test-drive these two routes. It's fine to test-drive them one by one.
+We also need some tests for this behaviour:
 
-```python
-"""
-GET /posts/new
-Returns the form page
-"""
-def test_get_posts_new(client):
-    response = client.get('/posts/new')
-
-    assert response.status_code == 200
-    assert '<h1>Add a post</h1>' in response.data.decode()
-
-    # Assert we have the correct form tag with the action and method.
-    assert '<form action="/posts" method="POST">' in response.data.decode()
-
-    # We can assert more things, like having
-    # the right HTML form inputs, etc.
-
-"""
-POST /posts
-Returns a success page
-"""
-def test_post_posts(client):
-    # We're now sending a POST request,
-    # simulating the behaviour that the HTML form would have.
-    response = client.post(
-        '/posts',
-        data={
-            'title': 'Welcome',
-            'content': 'I am a post
-        }
-    )
-
-    assert response.status_code == 200
-    assert '<p>Your post has been added!</p>' in response.data.decode()
-
-"""
-POST /posts
-Responds with 400 status if parameters are invalid
-"""
-def test_post_posts_invalid_parameters(client):
-    # ...
-    pass
-```
+* [A test for loading and submitting the form, then checking that the next
+  page reflects that
+  submission](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L52-L79)
+* [A test for submitting an invalid form and displaying
+  errors](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L81-L91)
+* [Plus unit tests for the new methods on `Book` `#is_valid` and
+  `#generate_errors`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_book.py#L32-L54)
 
 ## On Route Priority
 
-Remember that Flask uses the first route that matches a request. When creating a route such as `/albums/new`, a common problem you could run into would be to have another route `/albums/<id>`, containing a dynamic path parameter, being used - as the parameter `<id>` will "capture" the value `"new"` in the URL.
+Remember that Flask uses the first route that matches a request. When creating a
+route such as `/albums/new`, a common problem you could run into would be to
+have another route `/albums/<id>`, containing a dynamic path parameter, being
+used - as the parameter `<id>` will "capture" the value `"new"` in the URL.
 
 ```python
 # For a request with path `/albums/new`
@@ -146,15 +112,15 @@ def get_new_album():
     pass
 ```
 
-An easy way to fix this is to define the routes in the reverse order - this way `/albums/new` will be used first, and then any request to a path such as `/albums/12` will get to the other route. Another way, a bit more complex, is [to configure the route parameter to match a certain format](https://flask.palletsprojects.com/en/2.0.x/quickstart/#variable-rules), such as a numeric value.
+An easy way to fix this is to define the routes in the reverse order — this way `/albums/new` will be used first, and then any request to a path such as `/albums/12` will get to the other route. Alternatively, you [can configure the route parameter to match a certain format](https://flask.palletsprojects.com/en/2.0.x/quickstart/#variable-rules), such as a numeric value.
+
+[The starter app does both, as you can see here.](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/example_routes.py#L18-L32)
 
 ## Demonstration
 
 [Video Demonstration](https://www.youtube.com/watch?v=A6xZFvUGJXs)
 
 ## Exercise
-
-In the project `music_library_database_app`.
 
 Test-drive and implement a form page to add a new album.
 
@@ -163,8 +129,6 @@ You should then be able to use the form in your web browser to add a new album, 
 [Example solution](https://www.youtube.com/watch?v=A6xZFvUGJXs&t=1220s)
 
 ## Challenge
-
-In the project `music_library_database_app`.
 
 Test-drive and implement a form page to add a new artist.
 

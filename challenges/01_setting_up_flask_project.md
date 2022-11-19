@@ -12,36 +12,45 @@ Learn to setup a Python project with the Flask library.
 
 ## Flask
 
-[Flask](https://flask.palletsprojects.com/en/2.2.x/) is a small Python library
-we use to create web server programs using Python. We use Flask to configure
-which requests our program can respond to, and what logic needs to be done to
-respond to those requests.
+[Flask](https://flask.palletsprojects.com/en/2.2.x/) is a Python library we use
+to create web server programs using Python. We use Flask to configure which
+requests our program can respond to and what logic needs to be done to respond
+to those requests.
 
 In the following exercises and challenges, you will learn how to build a web
 server program that receives HTTP requests from a client (such as Postman), and
 returns HTTP responses to it.
 
-## Demonstration
+## Set up your project
 
-[Video demonstration](https://www.youtube.com/watch?v=1j0PS6e0CZk) <!-- OMITTED -->
+You will need to set up a few projects over the course of this module. You will
+use a starter project to do so. It contains some helpful utilities to get you
+going.
 
-## Setting up
+The first one is called `hello_web_project`. [Set it up from the **new** starter
+here.](https://github.com/makersacademy/web-applications-in-python-project-starter)
 
-[Follow this guidance](../pills/setting_up_flask_project.md) to setup a new
-project directory `hello_web_project` with Pytest and Flask.
+The starter comes with some example code that covers much of what you will learn
+in this module. You might find this useful, or potentially distracting. If you'd
+like to refer to it you can leave it there and work around it. If you'd like a
+clean slate, follow the instructions in the starter README to delete the example
+code.
+
+## Interacting with Flask
 
 We've got two different ways to interact with the program:
 
 * By running Pytest tests that will simulate HTTP requests and assert on
   responses.
-* By running the web server as a background program, using `flask --debug run`,
+* By running the web server as a background program, using `python app.py`,
   so we can manually send requests to it.
 
-Launch your server program with the `flask --debug run` command from your
+Launch your server program with the `python app.py` command from your
 project directory:
 
 ```shell
-; flask --debug run
+; pipenv shell # Don't forget to activate the virtual environment!
+; python app.py
 
   * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
@@ -50,29 +59,56 @@ Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 510-031-730
+
+# This process will wait around for requests.
+# This is good, keep going onto the next instruction.
+# When you do want to stop it, hit ctrl+c
 ```
 
 We can now send HTTP requests using `curl`:
 
 ```shell
-; curl http://localhost:5000/test-route
+# Call one of the example routes, if you haven't deleted it!
+; curl http://localhost:5000/smile
 ```
 
 `localhost` is the host name for your local machine, and `5000` is the network
 port on which Flask is running.
 
 <details>
-  <summary>:speech_balloon: What is that `--debug` about?</summary>
+  <summary>:speech_balloon: I've heard of `flask run` — why aren't we using that?</summary>
 
   ---
 
-  The `--debug` flag tells Flask to run in a special debug mode.
+  We've set up the starter to run Flask in a special debugging mode.
 
   The main difference for our purposes is that Flask will automatically reload
   your code when you change it.
   
   If you notice you are making changes to your code, but they are not being
-  reflected in the server, check you are running with `flask --debug run`.
+  reflected in the server, check you are running with `python app.py`.
+
+  In the HTML starter, which you will use later, running Flask in this manner
+  also has other benefits around being able to start the server in test mode.
+
+  ---
+
+</details>
+
+<details>
+  <summary>:confused: I see `Port 5000 is in use by another program.` — what's going on?</summary>
+
+  ---
+
+  You're probably running another Flask server somewhere. Try finding it and
+  hitting ctrl+c to stop it.
+  
+  Try running `lsof -i :5000` to see what's using the port. If you see `python`
+  or `flask` in the output, you can kill the process by finding the number under
+  `PID` and running `kill -9 <PID>`.
+
+  We would recommend not following the advice to disable Airplay Receiver. If
+  you keep having trouble, contact your coach.
 
   ---
 

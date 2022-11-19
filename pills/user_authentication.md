@@ -198,19 +198,16 @@ def login():
     return render_template('login.html')
 
 # This route receives login information (email and password) as POST parameters,
-# and find the user in the database using the email. If the password matches,
-# it returns a success page.
+# checks whether the credentials are valid, and if so finds the user in the database
+# using the email. If all goes well, it stores the user's ID in the session
+# and shows a success page.
 @app.route('/login', methods=['POST'])
 def login_post():
     email = request.form['email']
     password = request.form['password']
 
-    user = UserRepository.find_by_email(email)
-
-    # This is a simplified way of checking the password. In a real project, you 
-    # should encrypt the password stored in the database.
-
-    if user.password == password:
+    if UserRepository.check_password(email, password):
+        user = UserRepository.find_by_email(email)
         # Set the user ID in session
         session['user_id'] = user.id
 

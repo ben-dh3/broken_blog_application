@@ -2,13 +2,46 @@
 
 This web application is broken. You have three objectives:
 
- * Find the bugs and fix them. **You can assume that the tests describe the correct behaviour** (so you shouldn't modify anything in the `spec/` directory)
- * You need to get **all the tests passing**.
- * You need to **run the app manually with your browser** and make sure it works. You can have a look at the user stories below to understand how the program is expected to behave (without bugs). 
+* Find the bugs and fix them. **You can assume that the tests describe the
+  correct behaviour** (so you shouldn't modify anything in the `spec/`
+  directory)
+* You need to get **all the tests passing**.
+* You need to **run the app manually with your browser** and make sure it works.
+  You can have a look at the user stories below to understand how the program is
+  expected to behave (without bugs). 
+
+Start by setting up the project and running the tests.
+
+You may then wish to open `tests/test_app.py` for some guidance.
+
+## Setup
+
+Clone this repository and enter this directory.
+
+```shell
+# Install dependencies and set up the virtual environment
+; pipenv install
+
+# Activate the virtual environment
+; pipenv shell
+
+# Install the virtual browser we will use for testing
+; playwright install
+# If you have problems with the above, contact your coach
+
+# To run the tests
+; pytest
+
+# To run the app
+; python app.py
+# Visit http://localhost:5000/ in your browser
+```
 
 ## User stories
 
-Note that these user stories are **already implemented** by the app — they're here as guidance for you to understand what the program is about and how it should behave when correct.
+Note that these user stories are **already implemented** by the app — they're
+here as guidance for you to understand what the program is about and how it
+should behave when correct.
 
 ```
 As a developer who likes to blog,

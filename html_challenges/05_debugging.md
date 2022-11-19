@@ -26,45 +26,55 @@ the response, by acting as a web client.
 ## Getting Visibility
 
 We can get visibility using different tools depending on the "layer":
-  * In Flask routes or Python classes, we can use `print` to inspect the value of variables or
-    log arbitrary messages. These will be displayed in the terminal, in the logs of the
-    `flask --debug run` command, which we use to run the web server.
-  * In Jinja / HTML views, we can use Jinja tags to display the value of instance variables
-    set inside the route block (e.g `{{ something }}`) so it is displayed as part of the
-    HTML page.
-  * We can get visibility into the HTTP request and response — what data is flowing
-    between the client (the web browser) and the server. We can use a client like Postman,
-    or the [Browser Developer tools](../pills/use_the_developer_console.md).
-  * We can also manually inspect the web page to see what is wrong, or check if Flask
-    returns a helpful error message for us.
+
+* **Using `print`**  
+  We can use `print` anywhere in our Python code to inspect the value of
+  variables or log arbitrary messages. 
+  
+  These will be displayed in the terminal, in the logs of the `python app.py`
+  command, which we use to run the web server. 
+  
+  You can also get `pytest` to show them by running `pytest -sv`.
+
+* **Using `{{ placeholders }}` in Templates**  
+  In Jinja / HTML views, we can use Jinja tags to display the value of instance
+  variables set inside the route block (e.g `{{ something }}`) so it is
+  displayed as part of the HTML page.
+
+* **Using the dev tools**  
+  We can get visibility into the HTTP request and response — what data is
+  flowing between the client (the web browser) and the server. We can use a
+  client like Postman, or the [Browser Developer
+  tools](../pills/use_the_developer_console.md).
+
+* **Looking at the output**  
+  We can also manually inspect the web page to see what is wrong, or check if
+  Flask returns a helpful error message for us.
+
+* **Taking screenshots in Playwright tests**  
+  We can also take screenshots in Playwright tests, to see what the browser is
+  displaying at a particular point in the tests. For this, use:
+
+  ```python
+  page.screenshot(path="screenshot.png", full_page=True)
+  ```
+
+  You can also look at the raw page HTML with:
+
+  ```python
+  print(page.content())
+  ```
+
 
 ## Exercise
 
-Debug the following web application.
+[Set up and debug the Broken Blog application](../projects_to_debug/blog_app)
 
-Do the setup and run the server and tests:
-
-```shell
-; cd web-applications/projects_to_debug/postcode_checker_app
-; pipenv install
-; pipenv shell
-; pytest
-; flask --debug run
-```
+<!-- OMITTED -->
 
 ## Challenge
 
-Debug the following web application.
-
-Do the setup and run the server and tests:
-
-```shell
-; cd web-applications/projects_to_debug/blog_app
-; pipenv install
-; pipenv shell
-; pytest
-; flask --debug run
-```
+[Set up and debug the Postcode Checker application](../projects_to_debug/postcode_checker_app)
 
 
 [Next Challenge](06_securing_user_input.md)

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Postcode Checker</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Result</h1>
+    <a href="/">Back to the homepage</a>
+
+    {% if is_valid %}
+      <p class="t-result">{{ postcode }} is a valid postcode</p>
+    {% else %}
+      <p class="t-result">{{ postcode }} is not a valid postcode</p>
+    {% endif %}
+  </body>
+</html>

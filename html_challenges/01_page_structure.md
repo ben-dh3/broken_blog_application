@@ -1,6 +1,9 @@
 # Using HTML to create webpages
 
-_**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills. They contain a mixture of text and video, and may contain some challenge exercises without proposed solutions. [Read more about how to use Makers
+_**This is a Makers Vine.** Vines are designed to gradually build up
+sophisticated skills. They contain a mixture of text and video, and may contain
+some challenge exercises without proposed solutions. [Read more about how to use
+Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
 
 Learn to return HTML responses to be viewed in a web browser.
@@ -9,96 +12,75 @@ Learn to return HTML responses to be viewed in a web browser.
 
 ## Intro
 
-Web browsers are clients. When a web browser sends a request and receives a response, that response is displayed to the user.
+Web browsers are clients. When a web browser sends a request and receives a
+response, that response is displayed to the user.
 
-If that response contains HTML code, that code is interpreted and transformed into a user-friendly web page.
+If that response contains HTML code, that code is interpreted and transformed
+into a user-friendly web page.
 
-Whenever you visit a website using your web browser, the following happens behind the scenes:
-  1. the web browser sends a `GET` request to the server.
-  2. the web browser receives the response.
-  3. the web browser interprets the HTML code to know what to display.
-  4. the web browser shows a graphical web page (with text, images, buttons, etc) to the user.
+Whenever you visit a website using your web browser, the following happens
+behind the scenes:
 
-It's important to note that this process happens **again for every new page**. If we reload the page, the same process happens. If we visit a different page, the same process happens.
+1. The web browser sends a `GET` request to the server.
+2. The web browser receives the response.
+3. The web browser interprets the HTML code to know what to display.
+4. The web browser shows a graphical web page (with text, images, buttons, etc)
+   to the user.
 
-Every time we visit a URL, the web browser acts as a client — it sends a `GET` request to this URL and path, gets the response, and interprets the HTML as a user-friendly web page. It is really important that you keep this in mind when building, using and debugging your web applications, to have a good idea of what is happening.
+It's important to note that this process happens **again for every new page**.
+If we reload the page, the same process happens. If we visit a different page,
+the same process happens.
 
-[Use this guidance as HTML reference material](../pills/just_enough_html.md) for the following challenges.
+Every time we visit a URL, the web browser acts as a client — it sends a `GET`
+request to this URL and path, gets the response, and interprets the HTML as a
+user-friendly web page. It is really important that you keep this in mind when
+building, using and debugging your web applications, to have a good idea of what
+is happening.
+
+[Use this guidance as HTML reference material](../pills/just_enough_html.md)
+for the following challenges.
 
 ## Returning HTML
 
-We don't want to put HTML code in the middle of our Flask application. That's because we want to keep these two concerns separated - the program logic (in Python files) and the response content (the HTML code which will be sent to the browser).
+We don't want to put HTML code in the middle of our Flask application. That's
+because we want to keep these two concerns separated — the program logic (in
+Python files) and the response content (the HTML code which will be sent to the
+browser).
 
-To avoid putting HTML code in our app file, we write the HTML in a separate file, also called a _template file_.
+To avoid putting HTML code in our app file, we write the HTML in a separate
+file, also called a _template file_.
 
 This file is in a `templates/` directory and has a `.html` extension.
 
-```
-app.py
-lib/
-  ...
-templates/
-  index.html
-```
+Take a look at the `get_emoji` function in
+[`app.py`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/app.py#L12-L21)
+and
+[`templates/emoji.html`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/emoji.html)
+to see how they work together.
 
-```python
-# file: app.py
-
-# NOTE: We must import `render_template` from Flask
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    # The `render_template` function takes the template file name as a string,
-    # reads its content, and returns the response
-    return render_template('index.html')
-```
-
-```html
-<!-- file: templates/index.html -->
-
-<html>
-  <head></head>
-  <body>
-    <h1>Welcome to my page</h1>
-  </body>
-</html>
-```
+You will see some tags that look like `{{ ... }}`. You'll learn about these in
+the next step.
 
 ## Testing for HTML content
 
-We can test HTML responses in a similar way to testing plain text responses. However they can get quite long, so we can use the `in` operator to assert that the response contains a particular string.
+Previously we tested our endpoints by calling them and then asserting on what
+they responded. Testing HTML pages in this way can be difficult because they are
+long and represent complex interactions between the user and the application.
 
-```python
+So we're going to adjust our testing approach to represent things the user might
+do rather than raw HTML. For example, clicking a button or filling in a form.
 
-import pytest
-from app import app
+We'll use a library called [Playwright](https://playwright.dev) to do this. It
+works by opening a virtual web browser and interacting with it as a user would.
 
-@pytest.fixture
-def client():
-    app.config['TESTING'] = True # This gets us better errors
-    with app.test_client() as client:
-        yield client
+You can see a simple example in
+[`tests/test_app.py`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_app.py#L7-L18)
 
+And a few more sophisticated examples:
 
-"""
-Request: GET /
-Has a h1 title
-"""
-def test_index_contains_h1_title(client):
-    response = client.get('/')
-    assert "<h1>Hello</h1>" in response.data.decode('utf-8')
-
-"""
-Request: GET /
-Contains a div
-"""
-def test_index_contains_div(client):
-    response = client.get('/')
-    assert "<div>" in response.data.decode('utf-8')
-```
+* [Looking for a list of items on a page](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L6-L23)
+* [Clicking a link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L29-L49)
+* [Completing a form](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L56-L79)
 
 ## Demonstration
 
@@ -108,7 +90,8 @@ def test_index_contains_div(client):
 
 In your `hello_web_project` project.
 
-Test-drive and update the `GET /hello` route so it returns the greeting message as an HTML page:
+Create and write a test for a `GET /hello` route that returns the greeting
+message as an HTML page:
 
 ```html
 <html>
@@ -119,10 +102,10 @@ Test-drive and update the `GET /hello` route so it returns the greeting message 
 </html>
 ```
 
-Then, make sure your server is running using `flask --debug run` and use your web browser to access the page.
+Then, make sure your server is running using `python app.py` and use your
+web browser to access the page.
 
-
-
+[Example Solution](https://www.youtube.com/watch?v=Z8Y2J9Z8Z0o) <!-- OMITTED -->
 
 
 [Next Challenge](02_using_templates_dynamic_page.md)

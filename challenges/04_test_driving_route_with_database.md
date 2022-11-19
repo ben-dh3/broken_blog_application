@@ -1,53 +1,69 @@
 # Test-driving routes that interact with a database
 
-_**This is a Makers Vine.** Vines are designed to gradually build up sophisticated skills. They contain a mixture of text and video, and may contain some challenge exercises without proposed solutions. [Read more about how to use Makers
+_**This is a Makers Vine.** Vines are designed to gradually build up
+sophisticated skills. They contain a mixture of text and video, and may contain
+some challenge exercises without proposed solutions. [Read more about how to use
+Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
 
 Learn to test-drive Flask routes which interact with database-backed classes.
 
 <!-- OMITTED -->
 
-_This section connects together what you've learned working with databases with what you've learned building web applications. It can be quite challenging, so make sure you spend some time to understand the following._
+_This section connects together what you've learned working with databases with
+what you've learned building web applications._
 
 ## Intro
 
-So far you've mostly designed routes that return static data. A realistic web server program will usually connect to a database, to read data from it (usually responding to `GET` requests), or write some data into it (usually responding to `POST` requests).
+So far you've mostly designed routes that return static data. A realistic web
+server program will usually connect to a database, to read data from it (usually
+responding to `GET` requests), or write some data into it (usually responding to
+`POST` requests).
 
-In the next challenges, you'll learn how to use a database-backed Repository class inside your Flask application. Here's a simplified schema of how a typical database-backed web application works:
+In the next challenges, you'll learn how to use a database-backed Repository
+class inside your Flask application. Here's a simplified schema of how a typical
+database-backed web application works:
 
-![](../resources/http-database-flow.png)
+![A diagram of the process described below](../resources/http-database-flow.png)
 
 Let's break down an example:
-1. The client sends a HTTP request to the web server over the Internet: `GET /albums`
-2. The web server (a Flask application, in our case) handles the request, and executes the route block, which calls the method `AlbumRepository#all`
+
+1. The client sends a HTTP request to the web server over the Internet: `GET
+   /albums`
+2. The web server (a Flask application, in our case) handles the request, and
+   executes the route block, which calls the method `AlbumRepository#all`
 3. The Repository class runs a SQL query to the database.
 4. The database returns a result set to the program.
 5. The Repository class returns a list of `Album` objects to the route block.
 6. The route block sends a response to the client containing the data.
 
-The flow described above is what most CRUD web applications will implement, so it is important to get familiar with it, and to have a good mental model on how it works.
+The flow described above is what most web applications will implement, so it is
+important to get familiar with it, and to have a good mental model on how it
+works.
 
 ## CRUD Resources
 
-We design HTTP routes to map to CRUD operations on the database sitting behind the web server.
+You can imagine web applications as looking after resources (e.g. albums, users,
+etc). A web application will often allow the user to **C**reate, **R**ead,
+**U**pdate and **D**elete these resources. These are known as CRUD operations.
 
-For example, we could have the following routes mapped to each operation on the albums database:
+We design HTTP routes to map to CRUD operations on the database sitting behind
+the web server.
+
+For example, we could have the following routes mapped to each operation on the
+albums database:
 
 ```
 # Albums resource:
-
-# List all the albums
-Request: GET /albums
-Response: list of albums
-
-# Read a single album
-Request: GET /albums/1
-Response: of a single album
 
 # Create a new album
 Request: POST /albums
   With body parameters: "title=OK Computer"
 Response: None (just creates the resource on the server)
+
+# Read a single album
+Request: GET /albums/1
+Response: of a single album
 
 # Update a single album
 Request: PATCH /albums/1
@@ -57,17 +73,48 @@ Response: None (just updates the resource on the server)
 # Delete an album
 Request: DELETE /albums/1
 Response: None (just deletes the resource on the server)
+
+# List all the albums
+Request: GET /albums
+Response: list of albums
 ```
 
-In this case, _we say the Albums collection is a "Resource"_ —  we can execute CRUD operations (Create, Read, Update, Delete) on a given Resource, by sending HTTP requests to the right method and path.
+<details>
+  <summary>:speech_balloon: Wait, that's not CRUD — there's a fifth 'list' operation!</summary>
 
-You've noticed the mapping above uses other HTTP methods, such as `PATCH` and `DELETE`. They work the same way as `POST`, and we can send query parameters and body parameters with them too.
+  ---
 
-This pattern of routing is often called **REST**. The key idea behind **REST** is to map HTTP request (method and path) to CRUD operations on the underlying database, as in the example above.
+  Quite! And that Listing operation is very common. It really ought to be in
+  there but it sort of ruins the acronym.
+
+  The defence of this is that _List_ is really a Read operation of a list rather
+  than a single item.
+
+  ---
+
+</details>
+
+In this case, _we say the Albums collection is a "Resource"_ —  we can execute
+CRUD operations (Create, Read, Update, Delete) on a given Resource, by sending
+HTTP requests to the right method and path.
+
+You've noticed the mapping above uses other HTTP methods, such as `PATCH` and
+`DELETE`. They work the same way as `POST`, and we can send query parameters and
+body parameters with them too.
+
+This pattern of routing is often called **RESTful Routing**. 
+
+REST refers to a common way of designing web applications based on the idea that
+servers and clients are both interested in requesting and changing resources
+(e.g. albums). The client and server should agree on how to represent those
+resources and then how to communicate about changes to them. If you're
+interested in reading more in depth, the [Restful API
+resource](https://restfulapi.net) is very thorough.
 
 ## Path parameters
 
-You might have noticed the route pattern `/albums/1` from the previous mapping — this path contains a "dynamic" part: the album ID.
+You might have noticed the route pattern `/albums/1` from the previous mapping —
+this path contains a variable part: the album ID.
 
 ```
 GET /albums/1   -> get album with ID 1
@@ -75,48 +122,25 @@ GET /albums/5   -> get album with ID 5
 GET /albums/12   -> get album with ID 12
 ```
 
-But we only know how to handle _query_ or _body_ parameters in Flask, so how do we use this? This new kind of parameter is also called a "path" parameter - as a dynamic segment of the path.
+But we only know how to handle _query_ or _body_ parameters in Flask, so how do
+we use this? This new kind of parameter is called a "path" parameter.
 
-Flask makes it easy for us, using the following syntax:
+To get this parameter, we put a special `<something>` placeholder in our route,
+and then add a parameter to our method. Flask will then extract the data at that
+point in the path and pass it into the method as a parameter.
 
 ```python
-@app.route('/albums/<id>')
-def get_album(id):
+@app.route('/albums/<id>')    # <-- New code!
+def get_album(id):            # <-- New code!
      # Use id to retrieve the corresponding
      # album from the database.
-     pass
+     return f"Later I'll write the code to get album {id}."
 
-@app.route
+@app.route('/albums/<id>', methods=['DELETE'])
 def delete_album(id):
      # Use id to delete the corresponding
      # album from the database.
-     pass
-
-# etc.
-```
-
-## Downloading the program
-
-[Use this provided codebase as a starting point.](../resources/music_library_database_app/) It contains a program that interacts with a database containing a few music albums.
-
-_To use the seed codebase, clone the whole repository of this week's module to your machine, and then access the directory in `resources/music_library_database_app`._
-
-Create a database `music_library` and setup the program.
-
-```bash
-cd music_library_database_app
-
-# Install dependencies
-pipenv install
-
-# Activate the virtual environment
-pipenv shell
-
-# Make sure the tests pass
-pytest
-
-# Run the web server
-flask --debug run
+     return f"Later I'll write the code to delete album {id}."
 ```
 
 ## Demonstration
@@ -125,7 +149,14 @@ flask --debug run
 
 ## Exercise
 
-Follow the [Design recipe](../resources/plain_route_recipe_template.md) to test-drive a route `POST /albums` to create a new album:
+Create a new Flask application called `music_web_app` [using the
+starter](https://github.com/makersacademy/web-applications-in-python-project-starter)
+
+Follow the [Single Table Design
+Recipe](https://github.com/makersacademy/databases-in-python/blob/main/resources/single_table_design_recipe_template.md)
+and the [Plain Route Design
+recipe](../resources/plain_route_recipe_template.md) to test-drive a route
+`POST /albums` to create a new album:
 
 ```
 # Request:
@@ -140,14 +171,15 @@ artist_id=2
 (No content)
 ```
 
-Your test should assert that the new album is present in the list of records returned by `GET /albums`.
+Your test should assert that the new album is present in the list of records
+returned by `GET /albums`.
 
 [Example solution](https://www.youtube.com/watch?v=WD5aURdrDN4&t=1135s)
 
 ## Challenge
 
-This is a process feedback challenge. That means you should record yourself doing it and
-submit that recording to your coach for feedback. [How do I do
+This is a process feedback challenge. That means you should record yourself
+doing it and submit that recording to your coach for feedback. [How do I do
 this?](https://github.com/makersacademy/golden-square-in-python/blob/main/pills/process_feedback_challenges.md)
 
 Work in the same project directory.
@@ -161,7 +193,9 @@ GET /artists
 Pixies, ABBA, Taylor Swift, Nina Simone
 ```
 
-2. Test-drive a route `POST /artists`, which creates a new artist in the database. Your test should verify the new artist is returned in the response of `GET /artists`.
+2. Test-drive a route `POST /artists`, which creates a new artist in the
+   database. Your test should verify the new artist is returned in the response
+   of `GET /artists`.
 
 ```
 # Request:
@@ -181,7 +215,8 @@ GET /artists
 Pixies, ABBA, Taylor Swift, Nina Simone, Wild nothing
 ```
 
-[After you're done, submit your recording here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=web_as02).
+[After you're done, submit your recording
+here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=web_as02).
 
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
