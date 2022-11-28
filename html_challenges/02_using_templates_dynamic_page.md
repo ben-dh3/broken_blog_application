@@ -98,7 +98,7 @@ Use your web browser to access the page and check that it works in the browser
 too.
 
 <details>
-  <summary>:speech_bubble: I want a bit more challenge.</summary>
+  <summary>:speech_balloon: I want a bit more challenge.</summary>
 
   ---
 

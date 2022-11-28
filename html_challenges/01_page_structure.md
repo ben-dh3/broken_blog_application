@@ -84,6 +84,20 @@ And a few more sophisticated examples:
 * [Clicking a link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L29-L49)
 * [Completing a form](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L56-L79)
 
+Playwright is a new library and has quite a bit in it. Here are some good
+reference materials:
+
+* [The basics of writing
+  tests](https://playwright.dev/python/docs/writing-tests)
+* [A list of assertions (e.g. `to_have_text`, `to_be_empty`, etc
+  )](https://playwright.dev/python/docs/test-assertions)
+* [A list of selectors (e.g. `h2`, `.t-errors`,
+  etc)](https://playwright.dev/python/docs/selectors)
+* [A list of actions (e.g. `click`, `fill`,
+  etc)](https://playwright.dev/python/docs/input) — note that most of these have
+  equivalents on the [`page`
+  object](https://playwright.dev/python/docs/api/class-page) too. 
+
 ## Exercise
 
 In your `hello_web_project` project.
@@ -106,7 +120,7 @@ Then, make sure your server is running using `python app.py` and use your
 web browser to access the page.
 
 <details>
-  <summary>:speech_bubble: I want a bit more challenge.</summary>
+  <summary>:speech_balloon: I want a bit more challenge.</summary>
 
   ---
 
