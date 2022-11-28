@@ -37,6 +37,17 @@ Clone this repository and enter this directory.
 # Visit http://localhost:5000/ in your browser
 ```
 
+> **Note**  
+> When you amend the files, even if it is to print something out, the server
+> will reload to reflect your changes, **in the process clearing the list of
+> posts**. This may make your debugging harder.
+> 
+> You can work around this by debugging entirely through the tests, or ensuring
+> you add any test posts from scratch every time you make a change.
+> 
+> If you want to disable this feature entirely, remove `debug=True, ` in
+> `app.py`. You will then have to manually restart the server for every change.
+
 ## User stories
 
 Note that these user stories are **already implemented** by the app — they're

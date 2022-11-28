@@ -72,7 +72,7 @@ We can get visibility using different tools depending on the "layer":
 Have a go at this one using the above techniques, but if you get stuck please do
 feel free to refer to the example solution to see the techniques at work.
 
-<!-- OMITTED -->
+[Example Solution](https://www.youtube.com/watch?v=Z_X8jrbIj-I&t=0s)
 
 ## Challenge
 

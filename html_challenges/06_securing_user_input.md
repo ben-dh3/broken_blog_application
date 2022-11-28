@@ -4,6 +4,8 @@ Learn to validate and handle user input from HTML forms.
 
 ## Intro
 
+[Video Alternative](https://www.youtube.com/watch?v=Z_X8jrbIj-I&t=1460s)
+
 You learned how to build forms so user can input data that will be sent to the
 web application, as part of the request — which means our web applications can
 now handle data filled in by users.
@@ -28,7 +30,7 @@ then submit the form.
 _Headphone warning: this will play some music!_
 
 ```
-<script>window.alert("You've been p0wn3d!!!!"); document.location.href="https://www.youtube.com/watch?v=34Ig3X59_qA";</script>
+<script>window.alert("You've been p0wn3d!!!!"); document.location.href="https://www.youtube.com/watch?v=ium0cPBkCRU";</script>
 ```
 
 OK, that was interesting.
