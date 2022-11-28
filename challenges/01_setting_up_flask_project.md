@@ -77,7 +77,7 @@ We can now send HTTP requests using `curl`:
 
 ```shell
 # Call one of the example routes, if you haven't deleted it!
-; curl http://localhost:5000/smile
+; curl http://localhost:5000/emoji
 ```
 
 `localhost` is the host name for your local machine, and `5000` is the network
