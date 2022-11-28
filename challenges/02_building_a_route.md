@@ -106,26 +106,6 @@ def other_get_index():
     return "It isn't me, the other route stole the show"
 ```
 
-```python
-
-@app.route('/', methods=['POST'])
-def post_index():
-    return "Post Index!"
-
-@app.route('/hello', methods=['GET'])
-def get_hello():
-    return "Get Hello!"
-
-@app.route('/', methods=['GET'])
-def get_index():
-    return "Get Index!"
-
-@app.route('/', methods=['GET'])
-def other_get_index():
-    return "Another Get Index!"
-
-```
-
 _In the following sections, we will use the shorthand notation `GET /some_path`
 to designate a route which responds to `GET` requests to the path `/some_path`._
 
