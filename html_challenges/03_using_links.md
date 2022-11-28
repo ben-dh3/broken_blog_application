@@ -27,7 +27,7 @@ The `<a>` HTML tag is used to create links. The attribute `href` tells the brows
 
 Here are some examples in the starter:
 
-* [A simple link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/show.html#L16-L18)
+* [A simple link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/show.html#L18-L20)
 * [A link with Jinja tags in it](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/index.html#L14)
 
 When the above link is clicked, the browser will send a new request `GET /about` to the server.
