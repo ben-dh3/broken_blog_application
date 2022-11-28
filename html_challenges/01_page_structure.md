@@ -12,6 +12,8 @@ Learn to return HTML responses to be viewed in a web browser.
 
 ## Intro
 
+[Video Alternative](https://www.youtube.com/watch?v=hiQtX-3G_f0&t=0s)
+
 Web browsers are clients. When a web browser sends a request and receives a
 response, that response is displayed to the user.
 
@@ -82,22 +84,20 @@ And a few more sophisticated examples:
 * [Clicking a link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L29-L49)
 * [Completing a form](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_example_routes.py#L56-L79)
 
-## Demonstration
-
-[Video Demonstration](https://www.youtube.com/watch?v=Z8Y2J9Z8Z0o) <!-- OMITTED -->
-
 ## Exercise
 
 In your `hello_web_project` project.
 
-Create and write a test for a `GET /hello` route that returns the greeting
-message as an HTML page:
+Create a `GET /goodbye` route that returns a farewell message as an HTML page.
+Write a test for it too.
+
+The route should return this:
 
 ```html
 <html>
   <head></head>
   <body>
-    <h1>Hello!</h1>
+    <strong>Bye!</strong>
   </body>
 </html>
 ```
@@ -105,7 +105,22 @@ message as an HTML page:
 Then, make sure your server is running using `python app.py` and use your
 web browser to access the page.
 
-[Example Solution](https://www.youtube.com/watch?v=Z8Y2J9Z8Z0o) <!-- OMITTED -->
+<details>
+  <summary>:speech_bubble: I want a bit more challenge.</summary>
+
+  ---
+
+  The above HTML document is invalid in three separate ways.
+  
+  Find out what they are and fix them.
+
+  You might start by looking for an HTML validator online.
+
+  ---
+
+</details>
+
+[Example Solution](https://www.youtube.com/watch?v=hiQtX-3G_f0&t=1080s)
 
 
 [Next Challenge](02_using_templates_dynamic_page.md)

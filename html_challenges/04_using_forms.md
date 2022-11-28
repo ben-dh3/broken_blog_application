@@ -56,7 +56,7 @@ You can see an example of this in the starter app:
    form](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/new.html#L13-L18)
 
 <details>
-  <summary>:speech_bubble: What does `new.html` mean by 'These `label` tags are important for accessibility'?</summary>
+  <summary>:speech_balloon: What does `new.html` mean by 'These `label` tags are important for accessibility'?</summary>
 
   ---
 
@@ -93,32 +93,35 @@ We also need some tests for this behaviour:
 
 ## On Route Priority
 
-Remember that Flask uses the first route that matches a request. When creating a
-route such as `/albums/new`, a common problem you could run into would be to
-have another route `/albums/<id>`, containing a dynamic path parameter, being
-used - as the parameter `<id>` will "capture" the value `"new"` in the URL.
+Let's consider the following situation:
 
 ```python
-# For a request with path `/albums/new`
-
-# This route will be used - which is probably not what we want.
 @app.route('/albums/<id>')
 def get_album(id):
     pass
 
-# And this one is skipped
 @app.route('/albums/new')
 def get_new_album():
     pass
 ```
 
-An easy way to fix this is to define the routes in the reverse order — this way `/albums/new` will be used first, and then any request to a path such as `/albums/12` will get to the other route. Alternatively, you [can configure the route parameter to match a certain format](https://flask.palletsprojects.com/en/2.0.x/quickstart/#variable-rules), such as a numeric value.
+How does Flask tell the difference between these routes? How does it know to
+route `/albums/new` to `get_new_album` and not to `get_album`, which it
+technically will also match.
 
-[The starter app does both, as you can see here.](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/example_routes.py#L18-L32)
+Flask tries to be smart about which is used. In this case, it picks routes
+without parameters before routes with parameters — so if `/albums/new` matches
+it will always win even if it is the last route in the list.
+
+If you'd like to make your routes even more precise, you can [can configure the
+route parameter to match a certain
+format](https://flask.palletsprojects.com/en/2.0.x/quickstart/#variable-rules),
+such as a numeric value. [The starter app does this, as you can see
+here.](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/example_routes.py#L18-L32)
 
 ## Demonstration
 
-[Video Demonstration](https://www.youtube.com/watch?v=A6xZFvUGJXs)
+[Video Demonstration](https://www.youtube.com/watch?v=1GcIg1lDTC4&t=2348s)
 
 ## Exercise
 
@@ -126,7 +129,7 @@ Test-drive and implement a form page to add a new album.
 
 You should then be able to use the form in your web browser to add a new album, and see this new album in the albums list page.
 
-[Example solution](https://www.youtube.com/watch?v=A6xZFvUGJXs&t=1220s)
+[Example solution](https://www.youtube.com/watch?v=1GcIg1lDTC4&t=4140s)
 
 ## Challenge
 

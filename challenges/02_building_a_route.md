@@ -10,6 +10,10 @@ Learn to build a route to respond to HTTP requests.
 
 <!-- OMITTED -->
 
+## Video Intro and Demonstration
+
+[You can view a video version of the below content here.](https://www.youtube.com/watch?v=xBz6_cRfr78&t=0s). Otherwise, read on below.
+
 ## Routing
 
 Remember that a web server receives HTTP requests, execute some code depending
@@ -102,6 +106,26 @@ def other_get_index():
     return "It isn't me, the other route stole the show"
 ```
 
+```python
+
+@app.route('/', methods=['POST'])
+def post_index():
+    return "Post Index!"
+
+@app.route('/hello', methods=['GET'])
+def get_hello():
+    return "Get Hello!"
+
+@app.route('/', methods=['GET'])
+def get_index():
+    return "Get Index!"
+
+@app.route('/', methods=['GET'])
+def other_get_index():
+    return "Another Get Index!"
+
+```
+
 _In the following sections, we will use the shorthand notation `GET /some_path`
 to designate a route which responds to `GET` requests to the path `/some_path`._
 
@@ -184,10 +208,6 @@ the `curl` command line tool, like this:
 Goodbye Alice!
 ```
 
-## Demonstration
-
-[Video demonstration](https://www.youtube.com/watch?v=iCMsemJVbqo) <!-- OMITTED -->
-
 ## Exercise
 
 Work through the following in `app.py` in your `hello_web_project` project.
@@ -213,7 +233,7 @@ Thanks Leo, you sent this message: "Hello world"
 Make sure your server is running — then, using `curl` or Postman, check the
 route is working.
 
-[Example Solution](https://www.youtube.com/watch?v=iCMsemJVbqo&t=1106s) <!-- OMITTED -->
+[Example Solution](https://www.youtube.com/watch?v=xBz6_cRfr78&t=1020s)
 
 ## Challenge
 

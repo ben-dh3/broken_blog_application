@@ -65,10 +65,12 @@ We can get visibility using different tools depending on the "layer":
   print(page.content())
   ```
 
-
 ## Exercise
 
 [Set up and debug the Broken Blog application](../projects_to_debug/blog_app)
+
+Have a go at this one using the above techniques, but if you get stuck please do
+feel free to refer to the example solution to see the techniques at work.
 
 <!-- OMITTED -->
 

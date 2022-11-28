@@ -13,6 +13,10 @@ Learn to test-drive Flask routes which interact with database-backed classes.
 _This section connects together what you've learned working with databases with
 what you've learned building web applications._
 
+## Video Intro and Demonstration
+
+[You can view a video version of the below content here.](https://www.youtube.com/watch?v=xBz6_cRfr78&t=2591s). Otherwise, read on below.
+
 ## Intro
 
 So far you've mostly designed routes that return static data. A realistic web
@@ -29,12 +33,12 @@ database-backed web application works:
 Let's break down an example:
 
 1. The client sends a HTTP request to the web server over the Internet: `GET
-   /albums`
+   /books`
 2. The web server (a Flask application, in our case) handles the request, and
-   executes the route block, which calls the method `AlbumRepository#all`
+   executes the route block, which calls the method `BookRepository#all`
 3. The Repository class runs a SQL query to the database.
 4. The database returns a result set to the program.
-5. The Repository class returns a list of `Album` objects to the route block.
+5. The Repository class returns a list of `Book` objects to the route block.
 6. The route block sends a response to the client containing the data.
 
 The flow described above is what most web applications will implement, so it is
@@ -43,7 +47,7 @@ works.
 
 ## CRUD Resources
 
-You can imagine web applications as looking after resources (e.g. albums, users,
+You can imagine web applications as looking after resources (e.g. books, users,
 etc). A web application will often allow the user to **C**reate, **R**ead,
 **U**pdate and **D**elete these resources. These are known as CRUD operations.
 
@@ -51,32 +55,32 @@ We design HTTP routes to map to CRUD operations on the database sitting behind
 the web server.
 
 For example, we could have the following routes mapped to each operation on the
-albums database:
+books database:
 
 ```
-# Albums resource:
+# Books resource:
 
-# Create a new album
-Request: POST /albums
-  With body parameters: "title=OK Computer"
+# Create a new book
+Request: POST /books
+  With body parameters: "title=No Place on Earth&author_name=Christa Wolf"
 Response: None (just creates the resource on the server)
 
-# Read a single album
-Request: GET /albums/1
-Response: of a single album
+# Read a single book
+Request: GET /books/1
+Response: of a single book
 
-# Update a single album
-Request: PATCH /albums/1
-  With body parameters: "title=OK Computer"
+# Update a single book
+Request: PATCH /books/1
+  With body parameters: "title=No Place on Earth&author_name=Christa Wolf"
 Response: None (just updates the resource on the server)
 
-# Delete an album
-Request: DELETE /albums/1
+# Delete a book
+Request: DELETE /books/1
 Response: None (just deletes the resource on the server)
 
-# List all the albums
-Request: GET /albums
-Response: list of albums
+# List all the books
+Request: GET /books
+Response: list of books
 ```
 
 <details>
@@ -94,7 +98,7 @@ Response: list of albums
 
 </details>
 
-In this case, _we say the Albums collection is a "Resource"_ —  we can execute
+In this case, _we say the Books collection is a "Resource"_ —  we can execute
 CRUD operations (Create, Read, Update, Delete) on a given Resource, by sending
 HTTP requests to the right method and path.
 
@@ -106,20 +110,20 @@ This pattern of routing is often called **RESTful Routing**.
 
 REST refers to a common way of designing web applications based on the idea that
 servers and clients are both interested in requesting and changing resources
-(e.g. albums). The client and server should agree on how to represent those
+(e.g. books). The client and server should agree on how to represent those
 resources and then how to communicate about changes to them. If you're
 interested in reading more in depth, the [Restful API
 resource](https://restfulapi.net) is very thorough.
 
 ## Path parameters
 
-You might have noticed the route pattern `/albums/1` from the previous mapping —
-this path contains a variable part: the album ID.
+You might have noticed the route pattern `/books/1` from the previous mapping —
+this path contains a variable part: the book ID.
 
 ```
-GET /albums/1   -> get album with ID 1
-GET /albums/5   -> get album with ID 5
-GET /albums/12   -> get album with ID 12
+GET /books/1   -> get book with ID 1
+GET /books/5   -> get book with ID 5
+GET /books/12   -> get book with ID 12
 ```
 
 But we only know how to handle _query_ or _body_ parameters in Flask, so how do
@@ -130,22 +134,18 @@ and then add a parameter to our method. Flask will then extract the data at that
 point in the path and pass it into the method as a parameter.
 
 ```python
-@app.route('/albums/<id>')    # <-- New code!
-def get_album(id):            # <-- New code!
+@app.route('/books/<id>')    # <-- New code!
+def get_book(id):            # <-- New code!
      # Use id to retrieve the corresponding
-     # album from the database.
-     return f"Later I'll write the code to get album {id}."
+     # book from the database.
+     return f"Later I'll write the code to get book {id}."
 
-@app.route('/albums/<id>', methods=['DELETE'])
-def delete_album(id):
+@app.route('/books/<id>', methods=['DELETE'])
+def delete_book(id):
      # Use id to delete the corresponding
-     # album from the database.
-     return f"Later I'll write the code to delete album {id}."
+     # book from the database.
+     return f"Later I'll write the code to delete book {id}."
 ```
-
-## Demonstration
-
-[Video Demonstration](https://www.youtube.com/watch?v=WD5aURdrDN4) <!-- OMITTED -->
 
 ## Exercise
 
@@ -174,7 +174,7 @@ artist_id=2
 Your test should assert that the new album is present in the list of records
 returned by `GET /albums`.
 
-[Example solution](https://www.youtube.com/watch?v=WD5aURdrDN4&t=1135s)
+[Example solution](https://www.youtube.com/watch?v=xBz6_cRfr78&t=4525s)
 
 ## Challenge
 

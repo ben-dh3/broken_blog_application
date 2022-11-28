@@ -74,22 +74,13 @@ _After each test you write, follow the test-driving process of red, green, refac
 Here's an example for you to start with:
 
 ```python
-import pytest
-from app import app
-
-@pytest.fixture
-def client():
-    app.config['TESTING'] = True # This gets us better errors
-    with app.test_client() as client:
-        yield client
-
 """
 GET /home
   Expected response (200 OK):
   "This is my home page!"
 """
-def test_get_home(client):
-    response = client.get('/home')
+def test_get_home(web_client):
+    response = web_client.get('/home')
     assert response.status_code == 200
     assert response.data.decode('utf-8') == 'This is my home page!'
 
@@ -101,8 +92,8 @@ POST /submit
   Expected response (200 OK):
   "Thanks Leo, you sent this message: "Hello world""
 """
-def test_post_submit(client):
-    response = client.post('/submit', data={'name': 'Leo', 'message': 'Hello world'})
+def test_post_submit(web_client):
+    response = web_client.post('/submit', data={'name': 'Leo', 'message': 'Hello world'})
     assert response.status_code == 200
     assert response.data.decode('utf-8') == 'Thanks Leo, you sent this message: "Hello world"'
 ```

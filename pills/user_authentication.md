@@ -1,11 +1,5 @@
 # Creating and authenticating users
 
-_**This is a Makers Bite.** Bites are designed to train specific skills or
-tools. They contain an intro, a demonstration video, some exercises with an
-example solution video, and a challenge without a solution video for you to test
-your learning. [Read more about how to use Makers
-Bites.](https://github.com/makersacademy/course/blob/main/labels/bites.md)_
-
 Learn to authenticate users with the database and sessions.
 
 ## Storing users in the database

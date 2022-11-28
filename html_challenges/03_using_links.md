@@ -40,17 +40,17 @@ When creating links between "pages", keep the developer tools open in the browse
 
 ## Demonstration
 
-[Video Demonstration](https://www.youtube.com/watch?v=QwqPrxRqWu8)
+[Video Demonstration](https://www.youtube.com/watch?v=1GcIg1lDTC4&t=858s)
 
 ## Exercise
 
 Test-drive and implement the following change:
 
-The page returned by `GET /albums` should contain a link for each album listed. It should link to `/albums/<id>`, where `<id>` is the corresponding album's id.
+The page returned by `GET /albums` should contain a link for each album listed. It should link to `/albums/<id>`, where `<id>` is the corresponding album's id. That page should then show information about the specific album.
 
 Run the server and make sure you can navigate, using your browser, from the albums list page to the single album page.
 
-[Example solution](https://youtu.be/QwqPrxRqWu8?t=625)
+[Example solution](https://www.youtube.com/watch?v=1GcIg1lDTC4&t=1330s)
 
 ## Challenge
 

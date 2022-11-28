@@ -7,6 +7,10 @@ Learn to use Templates to dynamically generate HTML responses.
 
 ## Intro
 
+_This is also covered in the [video
+alternative](https://www.youtube.com/watch?v=hiQtX-3G_f0&t=0s) in the previous
+step._
+
 The HTML content we put in views is static by default.
 
 We can use Jinja Templates to generate dynamically the HTML that is sent to the
@@ -57,11 +61,10 @@ Here's the template file:
 
 [Use this guidance as reference material on Jinja syntax](../pills/just_enough_jinja_templates.md) for the following challenges.
 
-## Demonstration
-
-[Video Demonstration](https://www.youtube.com/watch?v=2Z4m4lnjxkY) <!-- OMITTED -->
-
 ## Exercise
+
+Create a new project `music_web_app`. You can copy over your database code from
+the previous challenges if you want to.
 
 Test-drive a `GET /albums` route that connects with an `AlbumRepository` and the
 database to return a result like this:
@@ -94,7 +97,22 @@ _(Don't forget to run the app using `python app.py`)._
 Use your web browser to access the page and check that it works in the browser
 too.
 
-[Example solution](https://www.youtube.com/watch?v=2Z4m4lnjxkY) <!-- OMITTED -->
+<details>
+  <summary>:speech_bubble: I want a bit more challenge.</summary>
+
+  ---
+
+  The above HTML document isn't very easy for a human to read. In the
+  web-browser the Title and Release Date are all on one line. Improve this
+  formatting using HTML.
+
+  Finally, ensure the HTML validates using an online HTML validator.
+
+  ---
+
+</details>
+
+[Example solution](https://www.youtube.com/watch?v=1GcIg1lDTC4&t=0s)
 
 ## Challenge
 

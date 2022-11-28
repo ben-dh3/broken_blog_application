@@ -8,6 +8,10 @@ Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
 
 Learn to write integration tests for your route using Pytest.
 
+## Video Intro and Demonstration
+
+[You can view a video version of the below content here.](https://www.youtube.com/watch?v=xBz6_cRfr78&t=1171s). Otherwise, read on below.
+
 ## Testing Routes with Pytest
 
 We can create integration tests for our routes using Pytest. Here's an example:
@@ -86,11 +90,6 @@ _In the following exercises, we will use the shorthand notation `GET /some_path`
 (or `POST /some_path`) to designate a route which responds to `GET` HTTP
 requests to the path `/some_path`._
 
-## Demonstration
-
-[Video demonstration](https://www.youtube.com/watch?v=NwKBtzkZrJo) /** @TODO
-Video **
-
 ## Exercise One
 
 _Work in the same project directory `hello_web_project` for the following
@@ -133,6 +132,8 @@ def test_post_count_vowels_mercurial(web_client):
     assert response.data.decode('utf-8') == 'There are 4 vowels in "mercurial"'
 ```
 
+[Example Solution](https://www.youtube.com/watch?v=xBz6_cRfr78&t=1778s)
+
 ## Exercise Two
 
 Use [this Design recipe](../resources/plain_route_recipe_template.md) to
@@ -151,6 +152,8 @@ names=Joe,Alice,Zoe,Julia,Kieran
 # Expected response (sorted list of names):
 Alice,Joe,Julia,Kieran,Zoe
 ```
+
+[Example Solution](https://www.youtube.com/watch?v=xBz6_cRfr78&t=2051s)
 
 ## Challenge
 

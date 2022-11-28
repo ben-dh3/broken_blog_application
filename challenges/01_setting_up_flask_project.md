@@ -10,6 +10,14 @@ Learn to setup a Python project with the Flask library.
 
 <!-- OMITTED -->
 
+## Video Version
+
+[You can view a video version of setting up a Flask project here.](https://www.youtube.com/watch?v=72JwLuAyHyM)
+
+The above video extends into a walkthrough of the starter codebase. Feel free to bookmark this for later.
+
+Alternatively, read on below.
+
 ## Flask
 
 [Flask](https://flask.palletsprojects.com/en/2.2.x/) is a Python library we use
@@ -28,7 +36,7 @@ use a starter project to do so. It contains some helpful utilities to get you
 going.
 
 The first one is called `hello_web_project`. [Set it up from the **new** starter
-here.](https://github.com/makersacademy/web-applications-in-python-project-starter)
+here.](https://github.com/makersacademy/web-applications-in-python-project-starter-plain)
 
 The starter comes with some example code that covers much of what you will learn
 in this module. You might find this useful, or potentially distracting. If you'd
