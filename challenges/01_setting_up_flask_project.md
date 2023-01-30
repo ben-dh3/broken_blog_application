@@ -73,7 +73,14 @@ Press CTRL+C to quit
 # When you do want to stop it, hit ctrl+c
 ```
 
-We can now send HTTP requests using `curl`:
+The web server program is now running "inside" this terminal. We also say that 
+the program is _attached_ to the terminal. It will now run continuously, 
+waiting to receive incoming HTTP requests.
+
+If we close this terminal window, we will also terminate the server. A cleaner 
+way of stopping the server is to use the keyboard shortcut `CTRL+C`.
+
+Once the server is running, we can send HTTP requests to it using `curl`:
 
 ```shell
 # Call one of the example routes, if you haven't deleted it!

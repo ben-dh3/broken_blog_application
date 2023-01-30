@@ -67,7 +67,7 @@ def index():
 ```
 
 The Python function associated with a HTTP method and path is called a "route".
-The code in this block is executed _only_ is the received request matches the
+The code in this block is executed _only_ if the received request matches the
 HTTP method and path.
 
 When Flask receives a request, it looks through all the route blocks configured
