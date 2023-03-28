@@ -58,7 +58,7 @@ This is a process feedback challenge. That means you should record yourself doin
 submit that recording to your coach for feedback. [How do I do
 this?](https://github.com/makersacademy/golden-square-in-python/blob/main/pills/process_feedback_challenges.md)
 
-Test-drive and implement the following changes to the `music_library_database_app` project:
+Test-drive and implement the following changes to the `music_web_app` project:
 
 1. Add a route `GET /artists/<id>` which returns an HTML page showing details for a single artist.
 2. Add a route `GET /artists` which returns an HTML page with the list of artists. This page should contain a link for each artist listed, linking to `/artists/<id>` where `<id>` needs to be the corresponding artist id.

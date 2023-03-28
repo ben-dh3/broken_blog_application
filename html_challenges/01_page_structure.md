@@ -42,6 +42,13 @@ is happening.
 [Use this guidance as HTML reference material](../pills/just_enough_html.md)
 for the following challenges.
 
+## New Starter Project
+
+For this HTML phase, we'll be using a **new starter**, available from
+[here](https://github.com/makersacademy/web-applications-in-python-project-starter-html).
+You can set up a new project from this one, in much the same way you did in
+Phase Two with its starter project.
+
 ## Returning HTML
 
 We don't want to put HTML code in the middle of our Flask application. That's
