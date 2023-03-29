@@ -12,6 +12,11 @@ Learn to return HTML responses to be viewed in a web browser.
 
 ## Intro
 
+_Note that this phase uses a [new starter
+codebase](https://github.com/makersacademy/web-applications-in-python-project-starter-html)
+and so some parts will look new. You'll be asked to set this up in the exercise
+at the end._
+
 [Video Alternative](https://www.youtube.com/watch?v=hiQtX-3G_f0&t=0s)
 
 Web browsers are clients. When a web browser sends a request and receives a
@@ -41,13 +46,6 @@ is happening.
 
 [Use this guidance as HTML reference material](../pills/just_enough_html.md)
 for the following challenges.
-
-## New Starter Project
-
-For this HTML phase, we'll be using a **new starter**, available from
-[here](https://github.com/makersacademy/web-applications-in-python-project-starter-html).
-You can set up a new project from this one, in much the same way you did in
-Phase Two with its starter project.
 
 ## Returning HTML
 
@@ -105,9 +103,15 @@ reference materials:
   equivalents on the [`page`
   object](https://playwright.dev/python/docs/api/class-page) too. 
 
-## Exercise
+## Exercise One
 
-In your `hello_web_project` project.
+For this HTML phase, we'll be using a **new starter**. [You can find it
+here](https://github.com/makersacademy/web-applications-in-python-project-starter-html).
+
+Set up the new starter and get it running by using the instructions in the
+README file.
+
+## Exercise Two
 
 Create a `GET /goodbye` route that returns a farewell message as an HTML page.
 Write a test for it too.
