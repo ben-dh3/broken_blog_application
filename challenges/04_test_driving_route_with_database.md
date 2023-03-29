@@ -150,7 +150,7 @@ def delete_book(id):
 ## Exercise
 
 Create a new Flask application called `music_web_app` [using the
-starter](https://github.com/makersacademy/web-applications-in-python-project-starter)
+starter](https://github.com/makersacademy/web-applications-in-python-project-starter-plain)
 
 Follow the [Single Table Design
 Recipe](https://github.com/makersacademy/databases-in-python/blob/main/resources/single_table_design_recipe_template.md)
@@ -216,7 +216,7 @@ Pixies, ABBA, Taylor Swift, Nina Simone, Wild nothing
 ```
 
 [After you're done, submit your recording
-here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=web_as02).
+here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=webpy_as02).
 
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
