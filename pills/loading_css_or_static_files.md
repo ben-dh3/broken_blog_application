@@ -52,7 +52,7 @@ Here's how we can reference a CSS file in the HTML page:
     <title>This will be displayed in the browser window or tab title</title>
 
     <!-- Load the CSS file at path /style.css -->
-    <link ref="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <h1>Welcome to my page</h1>
@@ -94,7 +94,7 @@ This means that by putting our CSS file in `static/`, we can have it available a
 `http://localhost:5000`). So the following would then work out of the box:
 
 ```html
-<link ref="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="/style.css" />
 ```
 
 ### What about images?
