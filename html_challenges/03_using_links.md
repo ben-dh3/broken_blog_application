@@ -25,12 +25,12 @@ The `<a>` HTML tag is used to create links. The attribute `href` tells the brows
 <a href="/about">Go to the about page</a>
 ```
 
-When the above link is clicked, the browser will send a new request `GET /about` to the server.
-
 Here are some examples in the starter:
 
 * [A simple link](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/show.html#L18-L20)
 * [A link with Jinja tags in it](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/templates/books/index.html#L14)
+
+When the above link is clicked, the browser will send a new request `GET /about` to the server.
 
 ## Using the browser developer tools
 
@@ -58,12 +58,12 @@ This is a process feedback challenge. That means you should record yourself doin
 submit that recording to your coach for feedback. [How do I do
 this?](https://github.com/makersacademy/golden-square-in-python/blob/main/pills/process_feedback_challenges.md)
 
-Test-drive and implement the following changes to the `music_web_app_html` project:
+Test-drive and implement the following changes to the `music_web_app` project:
 
 1. Add a route `GET /artists/<id>` which returns an HTML page showing details for a single artist.
 2. Add a route `GET /artists` which returns an HTML page with the list of artists. This page should contain a link for each artist listed, linking to `/artists/<id>` where `<id>` needs to be the corresponding artist id.
 
-[After you're done, submit your recording here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=webpy_as03).
+[After you're done, submit your recording here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=web_as03).
 
 
 [Next Challenge](04_using_forms.md)

@@ -73,16 +73,16 @@ There are more HTTP methods, but we'll cover them a bit later.
 
 Use Postman to send a `GET` request to the URL `https://postman-echo.com/get`.
 
-In the "Params" section, set a query parameter with key `title` and value
-`Welcome`. Then send the request.
+In the "Query params" section, set a query parameter with key `title` and value
+`'Welcome'`. Then send the request.
 
 You should get the following JSON response, and the status code should be `200
 OK`:
 
-```jsonc
+```json
 {
     "args": {
-        "title": "Welcome"
+        "title": "Welcome",
     },
     "headers": {
         // (omitted).
@@ -99,17 +99,15 @@ are sent in `GET` requests, inside the URL itself._
 
 ## Exercise Two
 
-Close the tab to clear the data from your previous request.
-
-Use Postman to send a `POST` request to the URL `https://postman-echo.com/post`.
-
-In the "Body" tab below the URL field, select the option "form-data", and set a
-parameter with key `title` and value `Welcome`. Then send the request.
+Use Postman to send a `POST` request to the URL
+`https://postman-echo.com/post`.In the "Body" tab below the URL field, select
+the option "form-data", and set a parameter with key `title` and value
+`'Welcome'`. Then send the request.
 
 You should get the following JSON response, and the status code should be `200
 OK`:
 
-```jsonc
+```json
 {
     "args": {},
     "data": {},
@@ -124,23 +122,6 @@ OK`:
     "url": "https://postman-echo.com/post"
 }
 ```
-
-<details>
-  <summary>:confused: My `url` is different — it says `/post?title=Welcome`</summary>
-
-  ---
-
-  If you're seeing this, you've probably put it in the 'Params' tab. To fix this:
-
-  1. Close the tab to clear the request you made.
-  2. Set up the request to send a POST request to `https://postman-echo.com/post`
-  3. Click through to the "Body" tab — not the "Params" tab.
-  4. Select `form-data`.
-  5. Add a parameter with the key `title` and value `Welcome`.
-
-  ---
-
-</details>
 
 [Solution video](https://www.youtube.com/watch?v=zwU6SpTwuxY&t=530s)
 

@@ -63,10 +63,8 @@ Here's the template file:
 
 ## Exercise
 
-Create a new project `music_web_app_html` using [the new HTML starter for this
-phase](https://github.com/makersacademy/web-applications-in-python-project-starter-html).
-You can copy over your database code from the previous challenges if you want
-to.
+Create a new project `music_web_app`. You can copy over your database code from
+the previous challenges if you want to.
 
 Test-drive a `GET /albums` route that connects with an `AlbumRepository` and the
 database to return a result like this:
@@ -118,10 +116,9 @@ too.
 
 ## Challenge
 
-In your project `music_web_app_html`.
+In your project `music_web_app`.
 
-Test-drive and implement a route that returns the HTML content for a single
-album. It should work like this:
+Test-drive and implement a `GET /albums/:id` route so it returns the HTML content for a single album:
 
 ```html
 <!-- Example for GET /albums/1 -->
