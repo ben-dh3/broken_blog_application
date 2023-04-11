@@ -155,6 +155,26 @@ Alice,Joe,Julia,Kieran,Zoe
 
 [Example Solution](https://www.youtube.com/watch?v=xBz6_cRfr78&t=2051s)
 
+<details>
+  <summary>:confused: What do you mean a 'list of names', that's a string with commas in it!</summary>
+
+  ---
+
+  Well spotted. HTTP requests transfer everything as strings, both requests
+  and responses, so cannot transmit lists or other data structures directly.
+  
+  Here we've used commas to represent a list of items. You'll need to take the
+  string `"Joe,Alice,Zoe,Julia,Kieran"` and somehow transform it into a Python
+  list. You'll also need to do the reverse to transmit it back in the response.
+
+  In industry, there are various standardised formats to represent lists and
+  dictionaries as strings. One is called JSON, which you may want to research
+  if you are interested.
+
+  ---
+
+</details>
+
 ## Challenge
 
 This is a process feedback challenge. That means you should record yourself
@@ -194,9 +214,8 @@ body is the correct string.
   ---
 </details>
 
-
 [After you're done, submit your recording
-here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=web_as01).
+here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=webpy_as01).
 
 
 
