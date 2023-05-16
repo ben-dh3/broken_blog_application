@@ -56,9 +56,9 @@ I want to receive an email if I am tagged in a Peep
 In the last two weeks, you integrated a database using the `psycopg` package and
 Repository classes. You also implemented small web applications using Flask,
 Pytest, HTML and Jinja templates to make dynamic webpages. You can continue to
-use this approach when building Chitter Challenge.
+use this approach when building the Chitter Challenge.
 
-If you'd like more technical challenge now, try using an Object Relational
+If you'd like a more technical challenge now, try using an Object Relational
 Mapper as the database interface, instead of implementing your own Repository
 classes. You can research Python ORMs to decide which to use, but
 [Peewee](https://github.com/coleifer/peewee) is a popular choice.

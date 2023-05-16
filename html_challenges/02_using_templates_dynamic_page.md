@@ -11,14 +11,14 @@ _This is also covered in the [video
 alternative](https://www.youtube.com/watch?v=hiQtX-3G_f0&t=0s) in the previous
 step._
 
-The HTML content we put in views is static by default.
+The HTML content we put in pages is static by default.
 
-We can use Jinja Templates to generate dynamically the HTML that is sent to the
+We can use Jinja Templates to dynamically generate the HTML that is sent to the
 client, by replacing the dynamic parts of the HTML, which are delimited by Jinja
 tags (in between `{{` and `}}`).
 
-The following example shows how a variable `name` can be used to change the view
-HTML content:
+The following example shows how a variable `name` can be used to change the HTML
+content:
 
 ```python
 # file: app.py
@@ -40,7 +40,7 @@ def greet():
 
     # The process is the following:
     #
-    # 1. Python reads the greet.html view file
+    # 1. Python reads the greet.html file
     # 2. It looks for any Jinja tags and replaces them with the value you gave
     # 3. The final generated HTML is sent in the response
 
@@ -59,14 +59,50 @@ Here's the template file:
 </html>
 ```
 
+<details>
+  <summary>How does `name=name` work in the call to render_template()? How can they both be `name`?!</summary>
+
+  ---
+
+  The two "name" instances refer to different things.
+
+  The first is the input parameter to the HTML file - it's the part that's going
+  to match `{{ name }}` in the Jinja tag. If we changed that tag, say to
+  "my_name", then we'd need to update the parameter name in the call to
+  render_template i.e. `my_name=name`.
+
+  The second is our variable in the greet() route we have defined. If we changed
+  that one as well, say to "request_name", then we'd be updating the code to say
+  `my_name=request_name`.
+
+  It might be convenient to have them use the same naming convention, but it's
+  useful to understand that they mean different things.
+
+  ---
+</details>
+
 [Use this guidance as reference material on Jinja syntax](../pills/just_enough_jinja_templates.md) for the following challenges.
 
 ## Exercise
 
 Create a new project `music_web_app_html` using [the new HTML starter for this
 phase](https://github.com/makersacademy/web-applications-in-python-project-starter-html).
-You can copy over your database code from the previous challenges if you want
-to.
+
+You can copy over your albums-related code from the previous challenges if you want
+to, rather than starting over from scratch. You'll probably want these files
+(although your chosen filenames might differ!):
+
+* From `lib`: `album.py`, `album_repository.py`, `artist.py`, `artist_repository.py`
+* From `tests`: `test_album.py`, `test_album_repository.py`, `test_artist.py`,
+  `test_artist_repository.py`
+* Optionally copy the album- and artist-related routes from your previous
+  `app.py` challenge (plus repository class imports), into the new `app.py`
+  file from the new starter project, noting *you will need to change at least
+  some of the routes*
+* Copy your related seed file over too, into `seeds`; make sure to seed your new
+  databases
+* Finally, check your original route(s) work in the new project e.g. check `GET
+  /albums` by using a browser
 
 Test-drive a `GET /albums` route that connects with an `AlbumRepository` and the
 database to return a result like this:

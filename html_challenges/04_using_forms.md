@@ -39,7 +39,7 @@ parameters' names the Flask route expects — this is also called having a
 "contract" between the client (the web browser sending the form data) and the
 server (our Flask application, which is expecting some specific parameters).
 
-A way of enforcing this contract, and avoiding the client to send wrong values,
+A way of enforcing this contract, and avoiding the client sending wrong values,
 is to add some validation to the `POST` route.
 
 You can see an example of this in the starter app:

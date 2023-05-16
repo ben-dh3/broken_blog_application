@@ -26,7 +26,7 @@ When: I make a GET request to /
 Then: I should get a 200 response
 """
 def test_get_wave(web_client):
-    # We'll send a GET request to /wave?name=Dana
+    # We'll simulate sending a GET request to /wave?name=Dana
     # This returns a response object we can test against.
     response = web_client.get('/wave?name=Dana')
 
@@ -42,7 +42,7 @@ And: I send a name and message as body parameters
 Then: I should get a 200 response with the right content
 """
 def test_post_submit(web_client):
-    # We'll send a POST request to /submit with a name and message
+    # We'll simulate sending a POST request to /submit with a name and message
     # This returns a response object we can test against.
     response = web_client.post('/submit', data={'name': 'Dana', 'message': 'Hello'})
 
@@ -57,12 +57,16 @@ def test_post_submit(web_client):
 # ; pytest tests/test_app.py
 ```
 
+> **Note**: Pytest is clever and is only **simulating** sending HTTP requests.
+> If you want to prove it, stop your server (`CTRL+C`) and run the tests. But
+> don't forget to start your server again afterwards!
+
 <details>
   <summary>:speech_balloon: What is this `.decode('utf-8')` thing?</summary>
 
   ---
 
-  A HTTP server might send all kinds of things back in a response. We're sending
+  An HTTP server might send all kinds of things back in a response. We're sending
   text, but it might also send an image, a video file, or your favourite music
   track!
 
@@ -85,9 +89,8 @@ def test_post_submit(web_client):
 
 </details>
 
-
 _In the following exercises, we will use the shorthand notation `GET /some_path`
-(or `POST /some_path`) to designate a route which responds to `GET` HTTP
+(or `POST /some_path`) to designate a route which responds to HTTP `GET`
 requests to the path `/some_path`._
 
 ## Exercise One
@@ -95,8 +98,8 @@ requests to the path `/some_path`._
 _Work in the same project directory `hello_web_project` for the following
 exercises._
 
-Add these tests to `tests/test_app.py` and use them to drive the implementation
-of a `POST /count_vowels` route.
+Add these tests to `tests/test_app.py` and use them to test-drive the
+implementation of a `POST /count_vowels` route.
 
 ```python
 # File: tests/test_app.py
@@ -136,7 +139,7 @@ def test_post_count_vowels_mercurial(web_client):
 
 ## Exercise Two
 
-Use [this Design recipe](../resources/plain_route_recipe_template.md) to
+Use [this Design Recipe](../resources/plain_route_recipe_template.md) to
 test-drive a new route `POST /sort-names` which receives a list of names (as a
 comma-separated string) and return the same list, sorted in alphabetical order.
 
@@ -181,7 +184,7 @@ This is a process feedback challenge. That means you should record yourself
 doing it and submit that recording to your coach for feedback. [How do I do
 this?](https://github.com/makersacademy/golden-square-in-python/blob/main/pills/process_feedback_challenges.md)
 
-Use the Design recipe to test-drive the following route:
+Use the Design Recipe to test-drive the following route:
 
 ```
 # Request:

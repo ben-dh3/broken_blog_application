@@ -16,7 +16,7 @@ Learn to build a route to respond to HTTP requests.
 
 ## Routing
 
-Remember that a web server receives HTTP requests, execute some code depending
+Remember that a web server receives HTTP requests, executes some code depending
 on the received request, and returns a response.
 
 To decide on what code to execute depending on the request, internally Flask
@@ -71,7 +71,7 @@ The code in this block is executed _only_ if the received request matches the
 HTTP method and path.
 
 When Flask receives a request, it looks through all the route blocks configured
-in that class, and execute the code of the first one matching the request.
+in that class, and executes the code of the first one matching the request.
 
 ```python
 from flask import Flask
@@ -109,7 +109,7 @@ def other_get_index():
 _In the following sections, we will use the shorthand notation `GET /some_path`
 to designate a route which responds to `GET` requests to the path `/some_path`._
 
-## Accessing GET request parameters
+## Accessing GET request query parameters
 
 We can use the `request.args` dictionary inside a route block to access the
 request _query parameters._
@@ -138,7 +138,7 @@ def hello():
 ```
 
 <details>
-  <summary>:confused: I get `zsh: no matches found`</summary>
+  <summary>:confused: I get `zsh: no matches found` when I run that curl command</summary>
 
   ---
 
@@ -155,10 +155,12 @@ def hello():
 
 </details>
 
-## Accessing POST request parameters
+## Accessing POST request body parameters
 
-We can also send POST requests with data. However, to retrieve the data, we must
-use the `request.form` dictionary instead of `request.args`.
+We can also send POST requests with data. This time, we're choosing to send data
+using _body parameters_. However, to retrieve this data, we must use the
+`request.form` dictionary instead of `request.args` (which we used for query
+parameters).
 
 ```python
 from flask import Flask, request # Remember to import `request`
@@ -178,7 +180,8 @@ def goodbye():
 
 ```
 
-You won't be able to visit that last request using the browser's address bar.
+You won't be able to visit that last request using the browser's address bar as
+body parameters don't go in the URL!
 
 Try sending a POST request with the right data using Postman. You could also use
 the `curl` command line tool, like this:
@@ -188,6 +191,35 @@ the `curl` command line tool, like this:
 Goodbye Alice!
 ```
 
+## Requests with more than one parameter
+
+Whether you're using query parameters or body parameters (or both!) sometimes
+you'll want to send more than one parameter at a time. The important bit of
+syntax to know is to separate parameter key-value pairs with `&`.
+
+Let's look at query parameters first, as this applies to both Postman and
+`curl`. Say you had a path `/introduction` and the route accepted two query
+parameters of `name` and `meet`. Here's how a request URL with those might look:
+
+```
+/introduction?name=David&meet=Alice
+```
+
+You could imagine that route returning something like "Hi David! I'd like to
+introduce you to Alice".
+
+Body parameters in cURL are handled very similarly. If we keep our same example,
+but switch from query parameters to body parameters (and so we'll use a POST
+request), our `curl` request would look like this:
+
+```
+; curl -X POST -d "name=David&meet=Alice" http://localhost:5000/introduction
+```
+
+Body parameters in Postman don't need you to define any `&` syntax - you can add
+multiple keys to the Body tab, under the option "form-data" which you used
+earlier.
+
 ## Exercise
 
 Work through the following in `app.py` in your `hello_web_project` project.
@@ -195,6 +227,7 @@ Work through the following in `app.py` in your `hello_web_project` project.
 Create a new route that responds to requests sent with:
   * A method `POST`
   * A path `/submit`
+  * Body parameters `name` and `message`
 
 Here's the expected behaviour of this route:
 
@@ -210,7 +243,7 @@ message=Hello world
 Thanks Leo, you sent this message: "Hello world"
 ```
 
-Make sure your server is running — then, using `curl` or Postman, check the
+Make sure your server is running — then, using `curl` and Postman, check the
 route is working.
 
 [Example Solution](https://www.youtube.com/watch?v=xBz6_cRfr78&t=1020s)
@@ -222,6 +255,7 @@ Work through the following in `app.py` your `hello_web_project` project.
 Create a new route that responds to requests sent with:
   * A method `GET`
   * A path `/wave`
+  * A query parameter `name`
 
 It should return the text `'I am waving at [NAME]'`, where `[NAME]` is replaced
 by the value of the `name` _query parameter_.
@@ -234,7 +268,7 @@ GET /wave?name=Leo
 I am waving at Leo
 ```
 
-Make sure your server is running — then, using `curl` or Postman, check the
+Make sure your server is running — then, using `curl` and Postman, check the
 route is working.
 
 

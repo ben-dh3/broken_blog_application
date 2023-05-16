@@ -15,7 +15,7 @@ what you've learned building web applications._
 
 ## Video Intro and Demonstration
 
-[You can view a video version of the below content here.](https://www.youtube.com/watch?v=xBz6_cRfr78&t=2591s). Otherwise, read on below.
+[You can view a video version of the below content here](https://www.youtube.com/watch?v=xBz6_cRfr78&t=2591s). Otherwise, read on below.
 
 ## Intro
 
@@ -32,7 +32,7 @@ database-backed web application works:
 
 Let's break down an example:
 
-1. The client sends a HTTP request to the web server over the Internet: `GET
+1. The client sends an HTTP request to the web server over the Internet: `GET
    /books`
 2. The web server (a Flask application, in our case) handles the request, and
    executes the route block, which calls the method `BookRepository#all`
@@ -54,8 +54,8 @@ etc). A web application will often allow the user to **C**reate, **R**ead,
 We design HTTP routes to map to CRUD operations on the database sitting behind
 the web server.
 
-For example, we could have the following routes mapped to each operation on the
-books database:
+For example, we could have the following routes mapped to each CRUD operation on
+the books database:
 
 ```
 # Books resource:
@@ -103,16 +103,16 @@ CRUD operations (Create, Read, Update, Delete) on a given Resource, by sending
 HTTP requests to the right method and path.
 
 You've noticed the mapping above uses other HTTP methods, such as `PATCH` and
-`DELETE`. They work the same way as `POST`, and we can send query parameters and
-body parameters with them too.
+`DELETE`. They work the same way as `POST`, and we can send certain types of
+parameters with them too.
 
-This pattern of routing is often called **RESTful Routing**. 
+This pattern of routing is often called **RESTful Routing**.
 
 REST refers to a common way of designing web applications based on the idea that
 servers and clients are both interested in requesting and changing resources
 (e.g. books). The client and server should agree on how to represent those
 resources and then how to communicate about changes to them. If you're
-interested in reading more in depth, the [Restful API
+interested in reading more in depth, the [RESTful API
 resource](https://restfulapi.net) is very thorough.
 
 ## Path parameters
@@ -147,10 +147,52 @@ def delete_book(id):
      return f"Later I'll write the code to delete book {id}."
 ```
 
+## Connecting the server to the database
+
+Take a moment to look at the [diagram above](#Intro) again. Pay particular
+attention to the "Flask application" and the "Repository class" and how they
+interact.
+
+In the previous Databases module, you created Repository classes to connect to
+the databases and make SQL queries to create/read/update/delete information.
+The argument supplied when instantiating those Repository classes was
+`db_connection` in your test files, which the classes were able to use to
+connect to the database.
+
+When the Flask application's routes have to fetch or change data in the
+database, those will use the imported Repository classes to do that work. As
+before, a connection object will need to be passed in as the argument.
+
+Here's a simplified example of how that might work, with some of the subsequent
+detail in the route left out, as it's not important for what we're
+demonstrating:
+
+```python
+from lib.database_connection import get_flask_database_connection  # <-- New code!
+from lib.book_repository import BookRepository
+from flask import request
+
+app = Flask(__name__)                                              # <-- New code!
+
+@app.route('/books', methods=['GET'])
+def get_books():
+    connection = get_flask_database_connection(app)                # <-- New code!
+    repository = BookRepository(connection)                        # <-- New code!
+    repository.all()
+    [...]
+```
+
+Note that in the first line, we import `get_flask_database_connection` which is
+later used, along with Flask, as the argument to a new `BookRepository`.
+
+You'll be needing code like this in the next exercise! The video accompanying
+the exercise uses this same approach, so you can always check that out if you
+want to see it being used.
+
 ## Exercise
 
 Create a new Flask application called `music_web_app` [using the
-starter](https://github.com/makersacademy/web-applications-in-python-project-starter-plain)
+starter](https://github.com/makersacademy/web-applications-in-python-project-starter-plain).
 
 Follow the [Single Table Design
 Recipe](https://github.com/makersacademy/databases-in-python/blob/main/resources/single_table_design_recipe_template.md)
@@ -182,7 +224,7 @@ This is a process feedback challenge. That means you should record yourself
 doing it and submit that recording to your coach for feedback. [How do I do
 this?](https://github.com/makersacademy/golden-square-in-python/blob/main/pills/process_feedback_challenges.md)
 
-Work in the same project directory.
+Work in the same project directory as the Exercise above.
 
 1. Test-drive a route `GET /artists`, which returns the list of artists:
 ```

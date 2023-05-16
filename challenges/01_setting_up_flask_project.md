@@ -6,7 +6,7 @@ some challenge exercises without proposed solutions. [Read more about how to use
 Makers
 Vines.](https://github.com/makersacademy/course/blob/main/labels/vines.md)_
 
-Learn to setup a Python project with the Flask library.
+Learn to set up a Python project with the Flask library.
 
 <!-- OMITTED -->
 
@@ -48,7 +48,7 @@ code.
 
 We've got two different ways to interact with the program:
 
-* By running Pytest tests that will simulate HTTP requests and assert on
+* By running Pytest tests that will **simulate** HTTP requests and assert on
   responses.
 * By running the web server as a background program, using `python app.py`,
   so we can manually send requests to it.
@@ -83,7 +83,7 @@ way of stopping the server is to use the keyboard shortcut `CTRL+C`.
 Once the server is running, we can send HTTP requests to it using `curl`:
 
 ```shell
-# Call one of the example routes, if you haven't deleted it!
+# Call one of the example routes, if you haven't deleted the example code!
 ; curl http://localhost:5000/emoji
 ```
 
@@ -116,11 +116,11 @@ port on which Flask is running.
   ---
 
   You're probably running another Flask server somewhere. Try finding it and
-  hitting ctrl+c to stop it.
+  hitting `CTRL+C` to stop it.
   
   Try running `lsof -i :5000` to see what's using the port. If you see `python`
-  or `flask` in the output, you can kill the process by finding the number under
-  `PID` and running `kill -9 <PID>`.
+  or `flask` in the output, you can kill the process by finding the process ID
+  under `PID` and running `kill -9 <PID>`.
 
   We would recommend not following the advice to disable Airplay Receiver. If
   you keep having trouble, contact your coach.

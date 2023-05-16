@@ -6,7 +6,7 @@ example solution video, and a challenge without a solution video for you to test
 your learning. [Read more about how to use Makers
 Bites.](https://github.com/makersacademy/course/blob/main/labels/bites.md)_
 
-Learn to explain the basics of how the HTTP protocol works.
+Learn to explain the basics of how HTTP works.
 
 ## Introduction
 
@@ -20,9 +20,9 @@ interact with the program.
 
 They could download and run the program themselves. But a better way is to run
 the program on a machine, and allow users to access it through their Internet
-connection. This is the basics of how the Web works.
+connection. These are the basics of how the Web works.
 
-The "central" machine where the program runs (alongside usually a database
+The "central" machine where the program runs (usually alongside a database
 software) is called the **server**. The machine and software used by users to
 interact with the program is called the **client**.
 
@@ -39,12 +39,12 @@ program running the program and responding to clients.
 
 In this module, "web server" will usually refer to a (Python) program that
 receives requests and sends back responses, and "client" will refer to either
-Postman or a web browser.
+Postman, a web browser or `curl`.
 
 ## HTTP
 
 Web clients and servers need to communicate through the network. They use a
-special language called the **HTTP protocol**.
+special language called **HTTP** (Hypertext Transfer Protocol).
 
 As web application developers, you'll almost never have to write any HTTP
 directly, but it's still important to understand the basics of how it works to
@@ -53,7 +53,7 @@ the following sections.
 
 At a high-level, when a client needs to interact with the program, it sends a
 **request** to the server through the Internet. When the server program receives
-this request, it does some work, perhaps communicate with a database behind the
+this request, it does some work, perhaps communicates with a database behind the
 scenes, and then sends back a **response** to the client.
 
 This process is repeated as many times needed, depending on what the application
@@ -88,7 +88,7 @@ Mac with Homebrew:
 ; brew install curl
 ```
 
-The `curl` program is itself a HTTP client — it can send a request to a server
+The `curl` program is itself an HTTP client — it can send a request to a server
 and receive a response. The only required argument to the command is where to
 send the request — the URL.
 
@@ -96,7 +96,7 @@ send the request — the URL.
 ; curl https://jsonplaceholder.typicode.com/todos/1
 ```
 
-You should get the following output:
+After running that, you should get the following output:
 
 ```json
 {
@@ -106,7 +106,6 @@ You should get the following output:
   "completed": false
 }
 ```
-
 
 
 [Next Challenge](02_requests_and_responses.md)

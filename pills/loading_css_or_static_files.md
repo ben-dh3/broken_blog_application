@@ -100,7 +100,7 @@ This means that by putting our CSS file in `static/`, we can have it available a
 ### What about images?
 
 It's the same. The HTML can reference the URL to an image in the web page, but the browser
-needs to send again another HTTP request for each image file it needs to display.
+needs to send another HTTP request for each image file it needs to display.
 
 The HTML tag to add an image in a webpage is the following:
 

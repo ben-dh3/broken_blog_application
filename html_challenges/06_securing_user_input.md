@@ -6,7 +6,7 @@ Learn to validate and handle user input from HTML forms.
 
 [Video Alternative](https://www.youtube.com/watch?v=Z_X8jrbIj-I&t=1460s)
 
-You learned how to build forms so user can input data that will be sent to the
+You learned how to build forms so users can input data that will be sent to the
 web application, as part of the request — which means our web applications can
 now handle data filled in by users.
 
@@ -49,7 +49,7 @@ or corrupted data, or worse, depending on the website and the targeted users.
 This is called _cross-site scripting injection_, or XSS injection.
 
 How do we prevent this? By following one simple rule - **never** trusting user
-input, and always consider it as "tainted". Before being fully processed
+input, and always considering it as "tainted". Before being fully processed
 (inserted a database, sent to some external service, or displayed to users), it
 needs to be validated, checked and sanitised.
 

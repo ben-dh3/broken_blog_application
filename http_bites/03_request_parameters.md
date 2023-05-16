@@ -44,24 +44,28 @@ We can see two important things about the response:
 * its status code (`200 OK` - on the top-right corner of the panel).
 
 In the following exercises, you'll practice by sending requests to the Postman
-Echo website, which returns some pre-defined responses to some requests. You'll
+Echo website, which returns some predefined responses to some requests. You'll
 learn about some components of GET and POST requests.
 
 ## Request Parameters
 
 * The `GET` method is often used to _query or retrieve_ information from the
   server. The exact data returned depends of the implementation of the web
-  server.   
+  server.
 
-  A `GET` request can also contain _query parameters_, as part of the URL.
+  A `GET` request can contain _query parameters_, as part of the URL.
 
 * The `POST` method is often used to _send_ data to the web server (usually to
   create or update data, or just send some information). What is done with this
-  data depends of the implementation of the web server.  
+  data depends of the implementation of the web server.
 
-  A `POST` request can also contain _body parameters_. Contrarily to _query_
-  parameters, they are not included in the URL, but within the request body
-  itself.
+  A `POST` request can contain _query parameters_ (like a `GET` request), but it
+  can also contain _body parameters_. Contrarily to _query parameters_, they are
+  not included in the URL, but within the request body itself.
+
+> **Note**: While both _query parameters_ and _body parameters_ can be used to
+> send additional information to the server in a request, they are not the same
+> thing!
 
 There are more HTTP methods, but we'll cover them a bit later.
 
@@ -71,13 +75,17 @@ There are more HTTP methods, but we'll cover them a bit later.
 
 ## Exercise One
 
-Use Postman to send a `GET` request to the URL `https://postman-echo.com/get`.
+Use Postman to send a `GET` request to the URL `https://postman-echo.com/get`
+using a _query parameter_.
+
+Update your URL field in Postman to the new URL we want to send a GET request
+to.
 
 In the "Query" tab below the URL field, set a query parameter with key `title`
 and value `Welcome`. Then send the request.
 
-You should get the following JSON response, and the status code should be `200
-OK`:
+You should get the following JSON response (although we've omitted the headers
+for brevity in our documentation), and the status code should be `200 OK`:
 
 ```jsonc
 {
@@ -101,7 +109,8 @@ are sent in `GET` requests, inside the URL itself._
 
 Close the tab to clear the data from your previous request.
 
-Use Postman to send a `POST` request to the URL `https://postman-echo.com/post`.
+Use Postman to send a `POST` request to the URL `https://postman-echo.com/post`
+using a _body parameter_.
 
 In the "Body" tab below the URL field, select the option "form-data", and set a
 parameter with key `title` and value `Welcome`. Then send the request.

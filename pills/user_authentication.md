@@ -57,7 +57,7 @@ Not even you know what they are!
   there are techniques that attackers can use to make it easier.
 
   However, a well-configured hashing function does make it much harder for
-  attackers to make use of a stolen list of passwords.
+  attackers to make use of a stolen list of hashed passwords.
 
   What does 'well-configured' mean? That's beyond our scope here. Suffice to
   say, if you're working on a production application you should either use an

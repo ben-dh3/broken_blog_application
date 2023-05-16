@@ -33,12 +33,12 @@ The HTTP response sent back to the client is essentially defined by:
   * its **body** (or content)
 
 The web server decides which status code to assign to the response, as a way of
-communicating to the client whether everything is fine (`200` - "OK"), or if
-something wrong happened. [A lot of different status
+communicating to the client whether everything is fine (e.g. `200` "OK"), or if
+something went wrong. [A lot of different status
 codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) exist for
 different situations. A famous one you probably already know of is `404` ("Not
-Found"), used by the server to indicate that the server cannot respond to a
-request.
+Found"), used by the server to indicate that the server cannot find the resource
+specified in the request's path.
 
 ## Using `curl`
 
@@ -53,11 +53,14 @@ curl -X POST https://jsonplaceholder.typicode.com/todos/1
 
 Here's a breakdown of the request sent by the command above:
   * The first part of the URL, `https://jsonplaceholder.typicode.com`, is called
-    the **host**. It is the address of the server itself
-  * the **path** of the request is `/todos/1`
-  * the **method** is `POST` - you will learn more about HTTP methods in the
+    the **host**. It is the address of the server itself.
+  * The **path** of the request is `/todos/1`
+  * The **method** is `POST` - you will learn more about HTTP methods in the
     next section, but for now remember the two most important are `GET` and
     `POST`.
+
+It's common for these sorts of requests to be called a "GET request" or "POST
+request".
 
 ## Demonstration
 

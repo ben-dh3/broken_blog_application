@@ -19,7 +19,7 @@ the response, by acting as a web client.
  * If a unit test is failing, fix this first. It means the behaviour of a class or method
    is broken, regardless of the web application flow.
  * Then, if an integration test is failing, it probably means there is a bug somewhere
-   else in the rest of the application — in the Flask route or the HTML view. Following
+   else in the rest of the application — in the Flask route or the HTML page. Following
    the flow of the data from the client to and from the web server, by also running the
    server, will help to find out what's wrong.
 

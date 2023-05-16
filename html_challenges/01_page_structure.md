@@ -81,7 +81,7 @@ We'll use a library called [Playwright](https://playwright.dev) to do this. It
 works by opening a virtual web browser and interacting with it as a user would.
 
 You can see a simple example in
-[`tests/test_app.py`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_app.py#L7-L18)
+[`tests/test_app.py`](https://github.com/makersacademy/web-applications-in-python-project-starter-html/blob/main/tests/test_app.py#L7-L18).
 
 And a few more sophisticated examples:
 
@@ -94,14 +94,14 @@ reference materials:
 
 * [The basics of writing
   tests](https://playwright.dev/python/docs/writing-tests)
-* [A list of assertions (e.g. `to_have_text`, `to_be_empty`, etc
+* [A list of assertions (e.g. `to_have_text`, `to_be_empty`, etc.
   )](https://playwright.dev/python/docs/test-assertions)
 * [A list of selectors (e.g. `h2`, `.t-errors`,
   etc)](https://playwright.dev/python/docs/selectors)
 * [A list of actions (e.g. `click`, `fill`,
   etc)](https://playwright.dev/python/docs/input) — note that most of these have
   equivalents on the [`page`
-  object](https://playwright.dev/python/docs/api/class-page) too. 
+  object](https://playwright.dev/python/docs/api/class-page) too
 
 ## Exercise One
 
@@ -110,6 +110,13 @@ here](https://github.com/makersacademy/web-applications-in-python-project-starte
 
 Set up the new starter and get it running by using the instructions in the
 README file.
+
+Find and look at the following files, to see how these are working for the
+`/emoji` route that's used as the final step in the starter project's setup:
+
+* `test_app.py`
+* `app.py`
+* `emoji.html`
 
 ## Exercise Two
 
