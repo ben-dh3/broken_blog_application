@@ -62,7 +62,7 @@ project directory:
 
   * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
-  * Running on http://127.0.0.1:500
+  * Running on http://127.0.0.1:5000
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
@@ -89,6 +89,13 @@ Once the server is running, we can send HTTP requests to it using `curl`:
 
 `localhost` is the host name for your local machine, and `5000` is the network
 port on which Flask is running.
+
+If this errors ("Access Denied"), replace `localhost` with `127.0.0.1`, so the command would be:
+
+```shell
+# Call one of the example routes, if you haven't deleted it!
+; curl http://127.0.0.1:5000/emoji
+```
 
 <details>
   <summary>:speech_balloon: I've heard of `flask run` — why aren't we using that?</summary>
