@@ -258,7 +258,7 @@ Pixies, ABBA, Taylor Swift, Nina Simone, Wild nothing
 ```
 
 [After you're done, submit your recording
-here](https://airtable.com/shrNFgNkPWr3d63Db?prefill_Item=webpy_as02).
+here](https://airtable.com/shrvo9ePjlwnaiLv5?prefill_Item=webpy_as02).
 
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
