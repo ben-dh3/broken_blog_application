@@ -154,6 +154,8 @@ OK`:
 [Solution video](https://www.youtube.com/watch?v=zwU6SpTwuxY&t=530s)
 
 
+[Log your progress and return to the challenge map](https://makers-event-logger.herokuapp.com/?event=03_request_parameters.md&repository=makersacademy%2Fweb-applications-in-python&redirect=README.md)
+
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
 ---
