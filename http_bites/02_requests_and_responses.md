@@ -98,7 +98,7 @@ You should get the following response body:
 ```
 
 
-[Next Challenge](03_request_parameters.md)
+[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=02_requests_and_responses.md&repository=makersacademy%2Fweb-applications-in-python&redirect=http_bites%2F03_request_parameters.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

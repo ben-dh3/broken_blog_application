@@ -154,7 +154,7 @@ you will learn how to deploy your web server on a remote machine, which is
 closer to how things work in the "real world".
 
 
-[Next Challenge](02_building_a_route.md)
+[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=01_setting_up_flask_project.md&repository=makersacademy%2Fweb-applications-in-python&redirect=challenges%2F02_building_a_route.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
