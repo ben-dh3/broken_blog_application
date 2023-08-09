@@ -261,7 +261,7 @@ Pixies, ABBA, Taylor Swift, Nina Simone, Wild nothing
 here](https://airtable.com/shrvo9ePjlwnaiLv5?prefill_Item=webpy_as02).
 
 
-[Log your progress and return to the challenge map](https://makers-event-logger.herokuapp.com/?event=04_test_driving_route_with_database.md&repository=makersacademy%2Fweb-applications-in-python&redirect=README.md)
+[Log your progress and return to the module outline](https://makers-event-logger.herokuapp.com/?event=04_test_driving_route_with_database.md&repository=makersacademy%2Fweb-applications-in-python&redirect=README.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
