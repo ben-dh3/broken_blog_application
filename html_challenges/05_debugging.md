@@ -79,7 +79,7 @@ feel free to refer to the example solution to see the techniques at work.
 [Set up and debug the Postcode Checker application](../projects_to_debug/postcode_checker_app)
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=05_debugging.md&repository=makersacademy%2Fweb-applications-in-python&redirect=html_challenges%2F06_securing_user_input.md)
+[Next Challenge](06_securing_user_input.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

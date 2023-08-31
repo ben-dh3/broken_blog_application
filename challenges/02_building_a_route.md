@@ -272,7 +272,7 @@ Make sure your server is running — then, using `curl` and Postman, check the
 route is working.
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=02_building_a_route.md&repository=makersacademy%2Fweb-applications-in-python&redirect=challenges%2F03_test_driving_a_route.md)
+[Next Challenge](03_test_driving_a_route.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

@@ -155,7 +155,7 @@ web browser to access the page.
 [Example Solution](https://www.youtube.com/watch?v=hiQtX-3G_f0&t=1080s)
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=01_page_structure.md&repository=makersacademy%2Fweb-applications-in-python&redirect=html_challenges%2F02_using_templates_dynamic_page.md)
+[Next Challenge](02_using_templates_dynamic_page.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

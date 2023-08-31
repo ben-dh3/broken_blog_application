@@ -138,7 +138,7 @@ Test-drive and implement a form page to add a new artist.
 You should then be able to use the form in your web browser to add a new artist, and see this new artist in the artists list page.
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=04_using_forms.md&repository=makersacademy%2Fweb-applications-in-python&redirect=html_challenges%2F05_debugging.md)
+[Next Challenge](05_debugging.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

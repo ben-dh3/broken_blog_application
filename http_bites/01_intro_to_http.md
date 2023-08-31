@@ -108,7 +108,7 @@ After running that, you should get the following output:
 ```
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=01_intro_to_http.md&repository=makersacademy%2Fweb-applications-in-python&redirect=http_bites%2F02_requests_and_responses.md)
+[Next Challenge](02_requests_and_responses.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

@@ -66,7 +66,7 @@ Test-drive and implement the following changes to the `music_web_app_html` proje
 [After you're done, submit your recording here](https://airtable.com/shrvo9ePjlwnaiLv5?prefill_Item=webpy_as03).
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=03_using_links.md&repository=makersacademy%2Fweb-applications-in-python&redirect=html_challenges%2F04_using_forms.md)
+[Next Challenge](04_using_forms.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

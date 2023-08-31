@@ -222,7 +222,7 @@ here](https://airtable.com/shrvo9ePjlwnaiLv5?prefill_Item=webpy_as01).
 
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=03_test_driving_a_route.md&repository=makersacademy%2Fweb-applications-in-python&redirect=challenges%2F04_test_driving_route_with_database.md)
+[Next Challenge](04_test_driving_route_with_database.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

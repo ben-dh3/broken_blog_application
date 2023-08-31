@@ -188,7 +188,7 @@ album. It should work like this:
 ```
 
 
-[Log your progress and go to the next challenge](https://makers-event-logger.herokuapp.com/?event=02_using_templates_dynamic_page.md&repository=makersacademy%2Fweb-applications-in-python&redirect=html_challenges%2F03_using_links.md)
+[Next Challenge](03_using_links.md)
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 

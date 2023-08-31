@@ -80,8 +80,6 @@ However, in this case the application is not doing that. You may need to perform
 some research to determine why this is, and then correct the underlying problem.
 
 
-[Log your progress and return to the module outline](https://makers-event-logger.herokuapp.com/?event=06_securing_user_input.md&repository=makersacademy%2Fweb-applications-in-python&redirect=README.md)
-
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
 ---
