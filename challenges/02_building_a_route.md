@@ -134,7 +134,7 @@ def hello():
     return f"Hello {name}!"
 
 # To make a request, run:
-# curl "http://localhost:5000/hello?name=David"
+# curl "http://localhost:5001/hello?name=David"
 ```
 
 <details>
@@ -146,7 +146,7 @@ def hello():
   probably because you haven't quoted the URL like this:
 
   ```shell
-  ; curl "http://localhost:5000/hello?name=David"
+  ; curl "http://localhost:5001/hello?name=David"
   ```
 
   The quotes tell the terminal, "No, really, I mean a literal question mark!"
@@ -187,7 +187,7 @@ Try sending a POST request with the right data using Postman. You could also use
 the `curl` command line tool, like this:
 
 ```shell
-; curl -X POST -d "name=Alice" http://localhost:5000/goodbye
+; curl -X POST -d "name=Alice" http://localhost:5001/goodbye
 Goodbye Alice!
 ```
 
@@ -213,7 +213,7 @@ but switch from query parameters to body parameters (and so we'll use a POST
 request), our `curl` request would look like this:
 
 ```
-; curl -X POST -d "name=David&meet=Alice" http://localhost:5000/introduction
+; curl -X POST -d "name=David&meet=Alice" http://localhost:5001/introduction
 ```
 
 Body parameters in Postman don't need you to define any `&` syntax - you can add

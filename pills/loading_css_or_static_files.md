@@ -90,8 +90,8 @@ for `GET /album_cover.jpg`. Flask is smart enough to realise the path we're requ
 is a file from the `static` directory.
 
 This means that by putting our CSS file in `static/`, we can have it available at the URL
-`http://localhost:5000/style.css` (assuming our server is running on
-`http://localhost:5000`). So the following would then work out of the box:
+`http://localhost:5001/style.css` (assuming our server is running on
+`http://localhost:5001`). So the following would then work out of the box:
 
 ```html
 <link rel="stylesheet" href="/style.css" />

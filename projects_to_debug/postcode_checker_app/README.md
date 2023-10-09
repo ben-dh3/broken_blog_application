@@ -46,7 +46,7 @@ Clone this repository and enter this directory.
 
 # To run the app
 ; python app.py
-# Visit http://localhost:5000/ in your browser
+# Visit http://localhost:5001/ in your browser
 ```
 
 ## User stories

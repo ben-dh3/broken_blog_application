@@ -62,7 +62,7 @@ project directory:
 
   * Debug mode: on
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
-  * Running on http://127.0.0.1:5000
+  * Running on http://127.0.0.1:5001
 Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
@@ -84,17 +84,17 @@ Once the server is running, we can send HTTP requests to it using `curl`:
 
 ```shell
 # Call one of the example routes, if you haven't deleted the example code!
-; curl http://localhost:5000/emoji
+; curl http://localhost:5001/emoji
 ```
 
-`localhost` is the host name for your local machine, and `5000` is the network
+`localhost` is the host name for your local machine, and `5001` is the network
 port on which Flask is running.
 
 If this errors ("Access Denied"), replace `localhost` with `127.0.0.1`, so the command would be:
 
 ```shell
 # Call one of the example routes, if you haven't deleted it!
-; curl http://127.0.0.1:5000/emoji
+; curl http://127.0.0.1:5001/emoji
 ```
 
 <details>
@@ -118,14 +118,14 @@ If this errors ("Access Denied"), replace `localhost` with `127.0.0.1`, so the c
 </details>
 
 <details>
-  <summary>:confused: I see `Port 5000 is in use by another program.` — what's going on?</summary>
+  <summary>:confused: I see `port 5001 is in use by another program.` — what's going on?</summary>
 
   ---
 
   You're probably running another Flask server somewhere. Try finding it and
   hitting `CTRL+C` to stop it.
   
-  Try running `lsof -i :5000` to see what's using the port. If you see `python`
+  Try running `lsof -i :5001` to see what's using the port. If you see `python`
   or `flask` in the output, you can kill the process by finding the process ID
   under `PID` and running `kill -9 <PID>`.
 
