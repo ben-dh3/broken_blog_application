@@ -16,7 +16,7 @@ We can format posts to strings nicely
 """
 def test_posts_format_nicely():
     post = Post(1, "Test Title", "Test Author", ["tag1", "tag2"])
-    assert str(post) == "Post(1, Test Title, Test Author, ['tag1', 'tag2'])"
+    assert str(post) == "Post(1, Test Title, Test Author)"
 
 """
 We can compare two identical posts

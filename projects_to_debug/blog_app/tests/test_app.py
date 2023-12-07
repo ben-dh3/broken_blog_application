@@ -29,7 +29,6 @@ def test_create_post(page, test_web_address):
     # We've added a screenshot here to get you started,
     # take a look at the screenshot.png file to see what the page looks like.
     page.screenshot(path="screenshot.png", full_page=True)
-    print(page.content())
     expect(page.locator(".t-title")).to_have_text("My Day")
     expect(page.locator(".t-content")).to_have_text("It was a good day")
 
@@ -47,11 +46,14 @@ def test_create_post_with_tags(page, test_web_address):
     page.fill("input[name='content']", "It was a good day")
     page.fill("input[name='tags']", "art, music")
     page.click("text=Create Post")
+    
     page.fill("input[name='title']", "My Next Day")
     page.fill("input[name='content']", "It was also a good day")
     page.fill("input[name='tags']", "art")
     page.click("text=Create Post")
     page.goto(f"http://{test_web_address}/tags/music")
+
+
     expect(page.locator(".t-title")).to_have_text("My Day")
     expect(page.locator(".t-content")).to_have_text("It was a good day")
     expect(page.locator(".t-title")).not_to_have_text("My Next Day")

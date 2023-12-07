@@ -6,7 +6,7 @@ def test_valid_postcodes():
     assert checker.check('M1 1AE') == True
 
 
-def test_valid_postcodes():
+def test_invalid_postcodes():
     checker = PostcodeChecker()
     assert checker.check('91 1AE') == False
     assert checker.check('M1 1A44E') == False
