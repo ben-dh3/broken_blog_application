@@ -1,3 +1,6 @@
+# Makers Course Content
+In projects find the broken (now fixed) blog application which needed to be debugged. Also find the postcode checker app, which needed to be debugged and secured with html_sanitizer.
+
 # Web applications
 
 _Coaching this? Read the coach guidance
